@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academia dos Códigos Arcanos - Desafio Final</title>
+    <title>Academia dos Códigos Arcanos - Desafio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap"
         rel="stylesheet">
@@ -42,6 +44,7 @@
             overflow-x: hidden;
         }
 
+        /* Otimização: Reduzir partículas e usar transform3d para GPU */
         .floating-particles {
             position: fixed;
             top: 0;
@@ -50,28 +53,27 @@
             height: 100%;
             pointer-events: none;
             z-index: 1;
+            will-change: transform;
         }
 
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
+            width: 3px;
+            height: 3px;
             background: var(--primary-gold);
             border-radius: 50%;
-            animation: float 6s infinite ease-in-out;
-            opacity: 0.6;
+            animation: float 8s infinite ease-in-out;
+            opacity: 0.4;
+            will-change: transform;
         }
 
         @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px) rotate(0deg);
+            0%, 100% {
+                transform: translate3d(0, 0, 0) rotate(0deg);
                 opacity: 0;
             }
-
             50% {
-                transform: translateY(-100px) rotate(180deg);
+                transform: translate3d(0, -80px, 0) rotate(180deg);
                 opacity: 1;
             }
         }
@@ -86,41 +88,39 @@
 
         .main-card {
             background: var(--card-bg);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 215, 0, 0.2);
             border-radius: 24px;
             padding: 50px;
             margin: 40px 0;
-            box-shadow:
-                0 25px 50px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                0 0 100px rgba(255, 215, 0, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
         }
 
+        /* Otimização: Shimmer menos frequente e usando transform */
         .main-card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -50%;
+            left: -100%;
             width: 200%;
             height: 100%;
             background: linear-gradient(90deg,
                     transparent,
-                    rgba(255, 215, 0, 0.03),
+                    rgba(255, 215, 0, 0.02),
                     transparent);
-            transform: skewX(-15deg);
-            animation: shimmer 8s infinite;
+            transform: translateX(0) skewX(-15deg);
+            animation: shimmer 12s infinite;
+            will-change: transform;
         }
 
         @keyframes shimmer {
             0% {
-                transform: translateX(-100%) skewX(-15deg);
+                transform: translateX(-50%) skewX(-15deg);
             }
-
             100% {
-                transform: translateX(100%) skewX(-15deg);
+                transform: translateX(50%) skewX(-15deg);
             }
         }
 
@@ -137,16 +137,20 @@
             text-transform: uppercase;
             letter-spacing: 4px;
             position: relative;
-            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        /* Otimização: Glow menos intenso e frequente */
+        .title {
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+            animation: glow 4s ease-in-out infinite alternate;
         }
 
         @keyframes glow {
             from {
-                filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+                filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
             }
-
             to {
-                filter: drop-shadow(0 0 40px rgba(168, 85, 247, 0.8));
+                filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.4));
             }
         }
 
@@ -169,19 +173,19 @@
 
         .card {
             background: var(--glass-bg);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             padding: 35px;
             margin: 25px 0;
             position: relative;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: hidden;
+            will-change: transform;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: translate3d(0, -5px, 0);
             border-color: rgba(255, 215, 0, 0.3);
         }
 
@@ -194,7 +198,7 @@
             height: 2px;
             background: var(--border-gradient);
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.3s ease;
         }
 
         .card:hover::before {
@@ -223,18 +227,19 @@
             background: linear-gradient(135deg, #ffd700, #ff6b35);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: pulse 2s infinite;
+        }
+
+        /* Otimização: Pulse menos frequente */
+        .section-title::before {
+            animation: pulse 3s infinite;
         }
 
         @keyframes pulse {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: translateY(-50%) scale(1);
             }
-
             50% {
-                transform: translateY(-50%) scale(1.1);
+                transform: translateY(-50%) scale(1.05);
             }
         }
 
@@ -264,17 +269,12 @@
             font-family: 'Orbitron', monospace;
             font-size: 1.2rem;
             box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
-            animation: rotate 10s linear infinite;
         }
 
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
+        /* Otimização: Remover rotação contínua */
+        .step-number:hover {
+            transform: rotate(10deg) scale(1.05);
+            transition: transform 0.3s ease;
         }
 
         .content {
@@ -316,7 +316,6 @@
             color: #00ff88;
             overflow-x: auto;
             position: relative;
-            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .code-block::before {
@@ -345,7 +344,7 @@
             padding: 35px;
             margin: 30px 0;
             position: relative;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
         }
 
         .special-card::before {
@@ -384,7 +383,7 @@
             padding: 20px;
             margin: 20px 0;
             border-radius: 0 16px 16px 0;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
         }
 
         .hero-image-container {
@@ -398,17 +397,13 @@
             position: relative;
             border-radius: 24px;
             overflow: hidden;
-            box-shadow:
-                0 25px 50px rgba(0, 0, 0, 0.4),
-                0 0 100px rgba(255, 215, 0, 0.2);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
         }
 
         .hero-image-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow:
-                0 35px 70px rgba(0, 0, 0, 0.5),
-                0 0 150px rgba(255, 215, 0, 0.3);
+            transform: translate3d(0, -8px, 0) scale(1.02);
         }
 
         .hero-image {
@@ -416,11 +411,12 @@
             height: 800px;
             object-fit: cover;
             display: block;
+            transition: transform 0.4s ease;
+            will-change: transform;
         }
 
         .hero-image-card:hover .hero-image {
-            filter: brightness(0.9) contrast(1.2);
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         .hero-overlay {
@@ -437,7 +433,7 @@
             align-items: center;
             justify-content: center;
             opacity: 0;
-            transition: all 0.4s ease;
+            transition: opacity 0.4s ease;
         }
 
         .hero-image-card:hover .hero-overlay {
@@ -449,7 +445,7 @@
             color: white;
             z-index: 10;
             transform: translateY(20px);
-            transition: all 0.4s ease;
+            transition: transform 0.4s ease;
         }
 
         .hero-image-card:hover .hero-text {
@@ -482,18 +478,19 @@
             display: inline-block;
             font-size: 1.5rem;
             margin: 0 8px;
-            animation: bounce 2s infinite;
+        }
+
+        /* Otimização: Bounce menos frequente */
+        .rune {
+            animation: bounce 4s infinite;
         }
 
         @keyframes bounce {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: translateY(0);
             }
-
-            50% {
-                transform: translateY(-10px);
+            25% {
+                transform: translateY(-8px);
             }
         }
 
@@ -553,6 +550,16 @@
             .hero-text p {
                 font-size: 1.1rem;
             }
+
+            /* Otimização mobile: reduzir efeitos */
+            .floating-particles {
+                display: none;
+            }
+
+            /* Otimização mobile: background-attachment fixed causa lag */
+            body {
+                background-attachment: scroll;
+            }
         }
 
         .fade-in {
@@ -568,15 +575,11 @@
             }
         }
 
-        /* Efeito de cursor personalizado */
-        body {
-            cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="10" fill="%23ffd700" opacity="0.5"/></svg>') 16 16, auto;
-        }
-
-        a,
-        button,
-        .card {
-            cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="10" fill="%23ff6b35" opacity="0.8"/></svg>') 16 16, pointer;
+        /* Otimização: Remover cursor personalizado que pode causar lag */
+        
+        /* Performance: Usar containment para otimizar repaint */
+        .card, .main-card, .special-card {
+            contain: layout style paint;
         }
     </style>
 </head>
@@ -586,13 +589,13 @@
 
     <div class="container">
         <div class="main-card fade-in">
-            <h1 class="title">⚔️ Desafio Final</h1>
+            <h1 class="title">⚔️ Desafio</h1>
             <p class="subtitle">A Jornada do(a) Herói(na) de Algorithmia</p>
 
             <div class="hero-image-container fade-in">
                 <div class="hero-image-card">
                     <img src="./img/rpg.png"
-                        alt="Capa da Atividade RPG" class="hero-image">
+                        alt="Capa da Atividade RPG" class="hero-image" loading="lazy">
                     <div class="hero-overlay">
                         <div class="hero-text">
                             <h3>🎲 AVENTURA ÉPICA DE PROGRAMAÇÃO</h3>
@@ -747,6 +750,10 @@ console.log("Pode enfrentar o Guardião? true — a batalha final se aproxima, e
                     <li>A lore deve ser gerada dinamicamente a partir dos dados criados.</li>
                     <li>Capriche na criatividade e na apresentação no console.</li>
                     <li><strong>Evite copiar a lore do exemplo</strong> — crie a sua própria história!</li>
+                    <li> A entrega deve ser feita pelo classroom.</li>
+                    <li>Você deve enviar o código como arquivo .js </li>
+                    <li>E, você deve enviar o código no formato de imagem(print) ou PDF </li>
+                    
                 </ul>
                 <p style="margin-top: 25px; text-align: center; font-size: 1.3rem;">
                     <span class="magic-text">Que sua jornada pela programação seja épica e cheia de aprendizado!</span>
@@ -757,59 +764,85 @@ console.log("Pode enfrentar o Guardião? true — a batalha final se aproxima, e
     </div>
 
     <script>
-        // Criar partículas flutuantes
+        // Otimização: Função otimizada para criar menos partículas
         function createParticles() {
             const container = document.getElementById('particles');
-            const particleCount = 50;
+            // Reduzido de 50 para 20 partículas
+            const particleCount = window.innerWidth > 768 ? 20 : 10;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 6) + 's';
                 container.appendChild(particle);
             }
         }
 
-        // Animação de fade-in sequencial
-        function animateElements() {
-            const elements = document.querySelectorAll('.fade-in');
-            elements.forEach((el, index) => {
-                setTimeout(() => {
-                    el.style.animationDelay = '0s';
-                    el.classList.add('fade-in');
-                }, index * 200);
+        // Otimização: Usar Intersection Observer para animações
+        function setupIntersectionObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '50px'
+            });
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
             });
         }
 
-        // Efeito de hover nos cards
-        function addCardEffects() {
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', function () {
-                    this.style.transform = 'translateY(-10px) scale(1.02)';
-                });
-                card.addEventListener('mouseleave', function () {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
+        // Otimização: Throttle para scroll event
+        function throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            }
         }
 
-        // Inicializar efeitos
-        window.addEventListener('load', function () {
-            createParticles();
-            animateElements();
-            addCardEffects();
-        });
-
-        // Efeito parallax suave
-        window.addEventListener('scroll', () => {
+        // Otimização: Parallax mais leve
+        const handleScroll = throttle(() => {
             const scrolled = window.pageYOffset;
             const parallax = document.querySelector('.floating-particles');
-            if (parallax) {
-                parallax.style.transform = `translateY(${scrolled * 0.2}px)`;
+            if (parallax && scrolled < window.innerHeight * 2) {
+                parallax.style.transform = `translate3d(0, ${scrolled * 0.1}px, 0)`;
             }
+        }, 16);
+
+        // Inicialização otimizada
+        function init() {
+            // Só criar partículas se não for mobile
+            if (window.innerWidth > 768) {
+                createParticles();
+                window.addEventListener('scroll', handleScroll, { passive: true });
+            }
+            
+            setupIntersectionObserver();
+        }
+
+        // Usar requestAnimationFrame para inicialização
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            requestAnimationFrame(init);
+        }
+
+        // Otimização: Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            window.removeEventListener('scroll', handleScroll);
         });
     </script>
 </body>
