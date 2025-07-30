@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academia dos Códigos Arcanos - Desafio</title>
+    <title>Academia dos Códigos Arcanos - Aventura Completa</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -25,6 +25,8 @@
             --card-bg: rgba(15, 15, 35, 0.85);
             --glass-bg: rgba(255, 255, 255, 0.05);
             --border-gradient: linear-gradient(135deg, #ffd700, #ff6b35, #a855f7);
+            --locked-color: #666;
+            --success-green: #10b981;
         }
 
         body {
@@ -44,7 +46,6 @@
             overflow-x: hidden;
         }
 
-        /* Otimização: Reduzir partículas e usar transform3d para GPU */
         .floating-particles {
             position: fixed;
             top: 0;
@@ -58,23 +59,23 @@
 
         .particle {
             position: absolute;
-            width: 3px;
-            height: 3px;
+            width: 2px;
+            height: 2px;
             background: var(--primary-gold);
             border-radius: 50%;
-            animation: float 8s infinite ease-in-out;
-            opacity: 0.4;
+            animation: float 12s infinite ease-in-out;
+            opacity: 0.3;
             will-change: transform;
         }
 
         @keyframes float {
             0%, 100% {
-                transform: translate3d(0, 0, 0) rotate(0deg);
+                transform: translate3d(0, 0, 0);
                 opacity: 0;
             }
             50% {
-                transform: translate3d(0, -80px, 0) rotate(180deg);
-                opacity: 1;
+                transform: translate3d(0, -60px, 0);
+                opacity: 0.6;
             }
         }
 
@@ -86,42 +87,191 @@
             z-index: 2;
         }
 
+        /* ESTILOS DO LOBBY - OTIMIZADO */
+        .lobby-section {
+            display: block;
+        }
+
+        .lobby-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            font-weight: 900;
+            text-align: center;
+            background: linear-gradient(135deg, #ffd700 0%, #ff6b35 50%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+        }
+
+        .lobby-subtitle {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.4rem;
+            text-align: center;
+            color: var(--secondary-orange);
+            margin-bottom: 30px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .level-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            cursor: pointer;
+            contain: layout style paint;
+        }
+
+        .level-card:not(.locked):hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-gold);
+        }
+
+        .level-card.locked {
+            opacity: 0.6;
+            cursor: not-allowed;
+            border-color: var(--locked-color);
+        }
+
+        .level-number {
+            font-family: 'Orbitron', monospace;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-gold), var(--secondary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .level-card.locked .level-number {
+            background: var(--locked-color);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .level-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.4rem;
+            color: var(--accent-purple);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .level-card.locked .level-title {
+            color: var(--locked-color);
+        }
+
+        .level-description {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .level-card.locked .level-description {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .level-difficulty {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .difficulty-beginner {
+            background: linear-gradient(135deg, var(--success-green), #34d399);
+            color: white;
+        }
+
+        .difficulty-intermediate {
+            background: linear-gradient(135deg, var(--secondary-orange), #f59e0b);
+            color: white;
+        }
+
+        .difficulty-advanced {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .level-card.locked .level-difficulty {
+            background: var(--locked-color);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .level-status {
+            font-size: 2rem;
+            margin-top: 10px;
+        }
+
+        .locked-icon {
+            font-size: 3rem;
+            color: var(--locked-color);
+            margin-top: 10px;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--secondary-orange));
+            color: var(--dark-bg);
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 1000;
+            display: none;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        /* ESTILOS DOS NÍVEIS */
+        .level-section {
+            display: none;
+        }
+
         .main-card {
             background: var(--card-bg);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 24px;
-            padding: 50px;
-            margin: 40px 0;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
             position: relative;
-            overflow: hidden;
-        }
-
-        /* Otimização: Shimmer menos frequente e usando transform */
-        .main-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 200%;
-            height: 100%;
-            background: linear-gradient(90deg,
-                    transparent,
-                    rgba(255, 215, 0, 0.02),
-                    transparent);
-            transform: translateX(0) skewX(-15deg);
-            animation: shimmer 12s infinite;
-            will-change: transform;
-        }
-
-        @keyframes shimmer {
-            0% {
-                transform: translateX(-50%) skewX(-15deg);
-            }
-            100% {
-                transform: translateX(50%) skewX(-15deg);
-            }
+            contain: layout style paint;
         }
 
         .title {
@@ -137,21 +287,8 @@
             text-transform: uppercase;
             letter-spacing: 4px;
             position: relative;
-        }
-
-        /* Otimização: Glow menos intenso e frequente */
-        .title {
             filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
             animation: glow 4s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
-            }
-            to {
-                filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.4));
-            }
         }
 
         .subtitle {
@@ -227,10 +364,6 @@
             background: linear-gradient(135deg, #ffd700, #ff6b35);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        /* Otimização: Pulse menos frequente */
-        .section-title::before {
             animation: pulse 3s infinite;
         }
 
@@ -271,7 +404,6 @@
             box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
         }
 
-        /* Otimização: Remover rotação contínua */
         .step-number:hover {
             transform: rotate(10deg) scale(1.05);
             transition: transform 0.3s ease;
@@ -478,10 +610,6 @@
             display: inline-block;
             font-size: 1.5rem;
             margin: 0 8px;
-        }
-
-        /* Otimização: Bounce menos frequente */
-        .rune {
             animation: bounce 4s infinite;
         }
 
@@ -494,7 +622,7 @@
             }
         }
 
-        /* Scrollbar personalizada */
+        /* SCROLLBAR */
         ::-webkit-scrollbar {
             width: 12px;
         }
@@ -512,15 +640,50 @@
             background: linear-gradient(135deg, var(--secondary-orange), var(--accent-purple));
         }
 
+        /* RESPONSIVO OTIMIZADO */
         @media (max-width: 768px) {
-            .title {
-                font-size: 2.5rem;
-                letter-spacing: 2px;
+            .lobby-title {
+                font-size: 2.2rem;
+                letter-spacing: 1px;
+                margin-bottom: 10px;
+            }
+
+            .lobby-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
+            }
+
+            .levels-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin: 20px 0;
+            }
+
+            .level-card {
+                padding: 20px 15px;
+            }
+
+            .level-number {
+                font-size: 2.8rem;
+                margin-bottom: 10px;
+            }
+
+            .level-title {
+                font-size: 1.2rem;
+            }
+
+            .level-description {
+                font-size: 0.9rem;
             }
 
             .main-card {
-                padding: 25px;
-                margin: 20px 10px;
+                padding: 20px;
+                margin: 15px 5px;
+            }
+
+            .title {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
             }
 
             .section-title {
@@ -551,14 +714,19 @@
                 font-size: 1.1rem;
             }
 
-            /* Otimização mobile: reduzir efeitos */
             .floating-particles {
                 display: none;
             }
 
-            /* Otimização mobile: background-attachment fixed causa lag */
             body {
                 background-attachment: scroll;
+            }
+
+            .back-button {
+                top: 15px;
+                left: 15px;
+                padding: 10px 18px;
+                font-size: 0.85rem;
             }
         }
 
@@ -575,161 +743,261 @@
             }
         }
 
-        /* Otimização: Remover cursor personalizado que pode causar lag */
-        
-        /* Performance: Usar containment para otimizar repaint */
         .card, .main-card, .special-card {
             contain: layout style paint;
+        }
+
+        /* PLACEHOLDER STYLES FOR LEVELS 2 AND 3 */
+        .coming-soon {
+            text-align: center;
+            padding: 100px 50px;
+        }
+
+        .coming-soon-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--locked-color), #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+        }
+
+        .coming-soon-text {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 30px;
+        }
+
+        .preview-features {
+            margin-top: 50px;
+            text-align: left;
+        }
+
+        .preview-features h3 {
+            font-family: 'Orbitron', monospace;
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+        }
+
+        .preview-features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .preview-features li {
+            padding: 10px 0;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+        }
+
+        .preview-features li::before {
+            content: '🔒 ';
+            margin-right: 10px;
         }
     </style>
 </head>
 
 <body>
     <div class="floating-particles" id="particles"></div>
+    <button class="back-button" onclick="showLobby()">🏠 Voltar ao Lobby</button>
 
     <div class="container">
-        <div class="main-card fade-in">
-            <h1 class="title">⚔️ Desafio</h1>
-            <p class="subtitle">A Jornada do(a) Herói(na) de Algorithmia</p>
+        <!-- LOBBY PRINCIPAL -->
+        <div class="lobby-section" id="lobby">
+            <div class="main-card fade-in">
+                <h1 class="lobby-title">⚔️ Academia dos Códigos Arcanos</h1>
+                <p class="lobby-subtitle">Escolha Sua Aventura de Programação</p>
 
-            <div class="hero-image-container fade-in">
-                <div class="hero-image-card">
-                    <img src="./img/rpg.png"
-                        alt="Capa da Atividade RPG" class="hero-image" loading="lazy">
-                    <div class="hero-overlay">
-                        <div class="hero-text">
-                            <h3>🎲 AVENTURA ÉPICA DE PROGRAMAÇÃO</h3>
-                            <p>Desperte o Mestre de Códigos que existe em você!</p>
+                <div class="levels-grid">
+                    <!-- NÍVEL 1 - DISPONÍVEL -->
+                    <div class="level-card" onclick="showLevel(1)">
+                        <div class="level-number">1</div>
+                        <h3 class="level-title">🗡️ A Jornada do(a) Herói(na)</h3>
+                        <div class="level-difficulty difficulty-beginner">Iniciante</div>
+                        <p class="level-description">
+                            Desperte o Mestre de Códigos que existe em você! Crie seu personagem épico usando variáveis, constantes e operadores básicos.
+                        </p>
+                        <div class="level-status">🎮 DISPONÍVEL</div>
+                    </div>
+
+                    <!-- NÍVEL 2 - BLOQUEADO -->
+                    <div class="level-card locked">
+                        <div class="level-number">2</div>
+                        <h3 class="level-title">⚔️ A Batalha dos Algoritmos</h3>
+                        <div class="level-difficulty difficulty-intermediate">Intermediário</div>
+                        <p class="level-description">
+                            Enfrente criaturas místicas usando estruturas condicionais e loops. A verdadeira aventura começa aqui!
+                        </p>
+                        <div class="locked-icon">🔒</div>
+                    </div>
+
+                    <!-- NÍVEL 3 - BLOQUEADO -->
+                    <div class="level-card locked">
+                        <div class="level-number">3</div>
+                        <h3 class="level-title">🏰 O Castelo dos Arrays</h3>
+                        <div class="level-difficulty difficulty-advanced">Avançado</div>
+                        <p class="level-description">
+                            Explore as masmorras mais profundas com arrays, funções e objetos. Apenas os mestres chegam até aqui!
+                        </p>
+                        <div class="locked-icon">🔒</div>
+                    </div>
+                </div>
+
+                <div class="special-card" data-title="🎯 SISTEMA DE PROGRESSÃO">
+                    <div class="content">
+                        Complete cada nível em ordem para desbloquear o próximo! Cada aventura traz novos desafios e conceitos de programação mais avançados.
+                    </div>
+                    <div class="content">
+                        <span class="highlight">✨ Dica:</span> Comece pelo <strong>Nível 1</strong> para aprender os fundamentos antes de partir para aventuras mais épicas!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NÍVEL 1 -->
+        <div class="level-section" id="level1">
+            <div class="main-card fade-in">
+                <h1 class="title">⚔️ Nível 1: Desafio</h1>
+                <p class="subtitle">A Jornada do(a) Herói(na) de Algorithmia</p>
+
+                <div class="hero-image-container fade-in">
+                    <div class="hero-image-card">
+                        <img src="./img/rpg.png" alt="Capa da Atividade RPG" class="hero-image" loading="lazy">
+                        <div class="hero-overlay">
+                            <div class="hero-text">
+                                <h3>🎲 AVENTURA ÉPICA DE PROGRAMAÇÃO</h3>
+                                <p>Desperte o Mestre de Códigos que existe em você!</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="special-card" data-title="🎯 OBJETIVO DA QUEST">
-                <div class="content">
-                    Nesta atividade, você colocará em prática todos os conceitos aprendidos até aqui, criando um
-                    personagem em um universo de fantasia medieval com elementos tecnológicos.
-                </div>
-                <div class="content">
-                    Você irá programar a ficha do seu herói ou heroína e gerar automaticamente sua <span
-                        class="highlight">lore</span> — uma narrativa descritiva e épica baseada nos dados que você
-                    criou.
-                </div>
-            </div>
-
-            <div class="special-card" data-title="🧠 CONTEÚDOS APLICADOS">
-                <ul class="content-list">
-                    <li>Declaração de <span class="highlight">variáveis</span></li>
-                    <li>Declaração de <span class="highlight">constantes</span></li>
-                    <li>Uso de <span class="highlight">operadores de atribuição</span></li>
-                    <li>Uso de <span class="highlight">operadores aritméticos</span></li>
-                    <li>Uso de <span class="highlight">operadores lógicos</span></li>
-                </ul>
-                <div class="important-note">
-                    <strong>📌 Importante:</strong> <em>Não utilize estruturas condicionais (<span
-                            class="highlight">if</span>) nesta atividade.</em>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2 class="section-title">🧩 Etapas da Aventura</h2>
-
-                <div class="card fade-in">
-                    <div class="step-title">
-                        <span class="step-number">1</span>🔹 Criação das Variáveis Principais
+                <div class="special-card" data-title="🎯 OBJETIVO DA QUEST">
+                    <div class="content">
+                        Nesta atividade, você colocará em prática todos os conceitos aprendidos até aqui, criando um
+                        personagem em um universo de fantasia medieval com elementos tecnológicos.
                     </div>
                     <div class="content">
-                        Utilizando <span class="highlight">let</span>, declare e atribua valores coerentes às seguintes
-                        informações do personagem:
+                        Você irá programar a ficha do seu herói ou heroína e gerar automaticamente sua <span
+                            class="highlight">lore</span> — uma narrativa descritiva e épica baseada nos dados que você
+                        criou.
                     </div>
-                    <div class="code-block">
-                        <pre>nome        // Nome do personagem
+                </div>
+
+                <div class="special-card" data-title="🧠 CONTEÚDOS APLICADOS">
+                    <ul class="content-list">
+                        <li>Declaração de <span class="highlight">variáveis</span></li>
+                        <li>Declaração de <span class="highlight">constantes</span></li>
+                        <li>Uso de <span class="highlight">operadores de atribuição</span></li>
+                        <li>Uso de <span class="highlight">operadores aritméticos</span></li>
+                        <li>Uso de <span class="highlight">operadores lógicos</span></li>
+                    </ul>
+                    <div class="important-note">
+                        <strong>📌 Importante:</strong> <em>Não utilize estruturas condicionais (<span
+                                class="highlight">if</span>) nesta atividade.</em>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">🧩 Etapas da Aventura</h2>
+
+                    <div class="card fade-in">
+                        <div class="step-title">
+                            <span class="step-number">1</span>🔹 Criação das Variáveis Principais
+                        </div>
+                        <div class="content">
+                            Utilizando <span class="highlight">let</span>, declare e atribua valores coerentes às seguintes
+                            informações do personagem:
+                        </div>
+                        <div class="code-block">
+                            <pre>nome        // Nome do personagem
 classe      // Tipo de herói (guerreiro, maga, engenheira arcana, etc.)
 nivel       // Nível do herói (número entre 1 e 20, por exemplo)
 vida        // Pontos de vida
 ouro        // Quantidade de moedas
 xp          // Experiência acumulada</pre>
+                        </div>
                     </div>
-                </div>
 
-                <div class="card fade-in">
-                    <div class="step-title">
-                        <span class="step-number">2</span>🔸 Definição de Constantes Mágicas
-                    </div>
-                    <div class="content">
-                        Utilize <span class="highlight">const</span> para representar os equipamentos mágicos do
-                        personagem. Esses valores <strong>não podem mudar</strong>:
-                    </div>
-                    <div class="code-block">
-                        <pre>NOME_ARMA       // Ex: "Espada Flamejante"
+                    <div class="card fade-in">
+                        <div class="step-title">
+                            <span class="step-number">2</span>🔸 Definição de Constantes Mágicas
+                        </div>
+                        <div class="content">
+                            Utilize <span class="highlight">const</span> para representar os equipamentos mágicos do
+                            personagem. Esses valores <strong>não podem mudar</strong>:
+                        </div>
+                        <div class="code-block">
+                            <pre>NOME_ARMA       // Ex: "Espada Flamejante"
 DANO_BASE       // Ex: 40
 NOME_ARMADURA   // Ex: "Capa de Dados"
 DEFESA_BASE     // Ex: 20</pre>
+                        </div>
                     </div>
-                </div>
 
-                <div class="card fade-in">
-                    <div class="step-title">
-                        <span class="step-number">3</span>⚙️ Aplicação de Operadores de Atribuição
+                    <div class="card fade-in">
+                        <div class="step-title">
+                            <span class="step-number">3</span>⚙️ Aplicação de Operadores de Atribuição
+                        </div>
+                        <div class="content">
+                            Atualize os valores das variáveis do personagem conforme os eventos abaixo, utilizando
+                            <strong>operadores de atribuição diferentes</strong>:
+                        </div>
+                        <ul class="content-list">
+                            <li>O personagem treinou e ganhou <strong>150 pontos de experiência</strong></li>
+                            <li>Comprou uma poção por <strong>30 moedas de ouro</strong></li>
+                            <li>Usou a poção e <strong>recuperou 40 pontos de vida</strong></li>
+                            <li>A arma foi encantada, e seu <strong>dano foi dobrado</strong></li>
+                        </ul>
                     </div>
-                    <div class="content">
-                        Atualize os valores das variáveis do personagem conforme os eventos abaixo, utilizando
-                        <strong>operadores de atribuição diferentes</strong>:
-                    </div>
-                    <ul class="content-list">
-                        <li>O personagem treinou e ganhou <strong>150 pontos de experiência</strong></li>
-                        <li>Comprou uma poção por <strong>30 moedas de ouro</strong></li>
-                        <li>Usou a poção e <strong>recuperou 40 pontos de vida</strong></li>
-                        <li>A arma foi encantada, e seu <strong>dano foi dobrado</strong></li>
-                    </ul>
-                </div>
 
-                <div class="card fade-in">
-                    <div class="step-title">
-                        <span class="step-number">4</span>➕ Cálculo de Atributos Finais
-                    </div>
-                    <div class="content">
-                        Com base nas informações anteriores, crie duas variáveis com os seguintes cálculos:
-                    </div>
-                    <div class="code-block">
-                        <pre>ataqueTotal = nivel + DANO_BASE
+                    <div class="card fade-in">
+                        <div class="step-title">
+                            <span class="step-number">4</span>➕ Cálculo de Atributos Finais
+                        </div>
+                        <div class="content">
+                            Com base nas informações anteriores, crie duas variáveis com os seguintes cálculos:
+                        </div>
+                        <div class="code-block">
+                            <pre>ataqueTotal = nivel + DANO_BASE
 defesaTotal = DEFESA_BASE + (nivel / 2)</pre>
+                        </div>
                     </div>
-                </div>
 
-                <div class="card fade-in">
-                    <div class="step-title">
-                        <span class="step-number">5</span>🔐 Avaliação de Prontidão com Operadores Lógicos
-                    </div>
-                    <div class="content">
-                        Crie variáveis booleanas para verificar as seguintes condições:
-                    </div>
-                    <div class="code-block">
-                        <pre>vidaSuficiente → vida > 70
+                    <div class="card fade-in">
+                        <div class="step-title">
+                            <span class="step-number">5</span>🔐 Avaliação de Prontidão com Operadores Lógicos
+                        </div>
+                        <div class="content">
+                            Crie variáveis booleanas para verificar as seguintes condições:
+                        </div>
+                        <div class="code-block">
+                            <pre>vidaSuficiente → vida > 70
 ataqueForte → ataqueTotal > 60
 nivelAvancado → nivel >= 10
 podeEnfrentarGuardiao → vidaSuficiente && (ataqueForte || nivelAvancado)</pre>
-                    </div>
-                    <div class="content">
-                        Essas variáveis devem ser exibidas no console para mostrar <span class="highlight">true</span>
-                        ou <span class="highlight">false</span>.
-                    </div>
-                </div>
-
-                <div class="card fade-in">
-                    <div class="step-title">
-                        <span class="step-number">6</span>📜 Geração da Lore do Personagem
-                    </div>
-                    <div class="content">
-                        Por fim, use <span class="highlight">console.log()</span> para escrever uma <strong>narrativa de
-                            aproximadamente 10 linhas</strong>, no estilo <strong>RPG medieval com elementos
-                            tecnológicos</strong>. Ela deve usar os dados criados dinamicamente para contar a história
-                        do personagem.
+                        </div>
+                        <div class="content">
+                            Essas variáveis devem ser exibidas no console para mostrar <span class="highlight">true</span>
+                            ou <span class="highlight">false</span>.
+                        </div>
                     </div>
 
-                    <div class="special-card" data-title="💡 EXEMPLO DE LORE">
-                        <div class="code-block">
-                            <pre>console.log("🧾 LORE DO HERÓI: Kael");
+                    <div class="card fade-in">
+                        <div class="step-title">
+                            <span class="step-number">6</span>📜 Geração da Lore do Personagem
+                        </div>
+                        <div class="content">
+                            Por fim, use <span class="highlight">console.log()</span> para escrever uma <strong>narrativa de
+                                aproximadamente 10 linhas</strong>, no estilo <strong>RPG medieval com elementos
+                                tecnológicos</strong>. Ela deve usar os dados criados dinamicamente para contar a história
+                            do personagem.
+                        </div>
+
+                        <div class="special-card" data-title="💡 EXEMPLO DE LORE">
+                            <div class="code-block">
+                                <pre>console.log("🧾 LORE DO HERÓI: Kael");
 console.log("");
 console.log("Kael, o Tecno-Mago errante, percorre as ruínas criptografadas do Reino de Algorithmia.");
 console.log("Portando seu Catalisador de Nuvem, canaliza tempestades de código contra inimigos do sistema.");
@@ -739,48 +1007,137 @@ console.log("Após intensos treinamentos, acumula 540 de XP e carrega 90 moedas,
 console.log("Restaurado com 85 pontos de vida, Kael é considerado uma das maiores promessas da Geração Binária.");
 console.log("Vida suficiente? true | Ataque forte? true | Nível avançado? true");
 console.log("Pode enfrentar o Guardião? true — a batalha final se aproxima, e o destino está sendo compilado.");</pre>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="special-card" data-title="✅ CRITÉRIOS DE ENTREGA">
-                <ul class="content-list">
-                    <li>O código deve conter todas as etapas (1 a 6).</li>
-                    <li>A lore deve ser gerada dinamicamente a partir dos dados criados.</li>
-                    <li>Capriche na criatividade e na apresentação no console.</li>
-                    <li><strong>Evite copiar a lore do exemplo</strong> — crie a sua própria história!</li>
-                    <li> A entrega deve ser feita pelo classroom.</li>
-                    <li>Você deve enviar o código como arquivo .js </li>
-                    <li>E, você deve enviar o código no formato de imagem(print) ou PDF </li>
+                <div class="special-card" data-title="✅ CRITÉRIOS DE ENTREGA">
+                    <ul class="content-list">
+                        <li>O código deve conter todas as etapas (1 a 6).</li>
+                        <li>A lore deve ser gerada dinamicamente a partir dos dados criados.</li>
+                        <li>Capriche na criatividade e na apresentação no console.</li>
+                        <li><strong>Evite copiar a lore do exemplo</strong> — crie a sua própria história!</li>
+                        <li>A entrega deve ser feita pelo classroom.</li>
+                        <li>Você deve enviar o código como arquivo .js</li>
+                        <li>E, você deve enviar o código no formato de imagem(print) ou PDF</li>
+                    </ul>
+                    <p style="margin-top: 25px; text-align: center; font-size: 1.3rem;">
+                        <span class="magic-text">Que sua jornada pela programação seja épica e cheia de aprendizado!</span>
+                        <span class="rune">🌟</span><span class="rune">⚡</span><span class="rune">🔮</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- NÍVEL 2 - PLACEHOLDER -->
+        <div class="level-section" id="level2">
+            <div class="main-card fade-in">
+                <div class="coming-soon">
+                    <h1 class="coming-soon-title">🔒 Nível 2: A Batalha dos Algoritmos</h1>
+                    <p class="coming-soon-text">Este nível épico está sendo forjado nas chamas do conhecimento...</p>
+                    <p class="coming-soon-text">🔥 Em breve você poderá enfrentar criaturas místicas usando estruturas condicionais e loops!</p>
                     
-                </ul>
-                <p style="margin-top: 25px; text-align: center; font-size: 1.3rem;">
-                    <span class="magic-text">Que sua jornada pela programação seja épica e cheia de aprendizado!</span>
-                    <span class="rune">🌟</span><span class="rune">⚡</span><span class="rune">🔮</span>
-                </p>
+                    <div class="preview-features">
+                        <h3>🎯 O que você encontrará aqui:</h3>
+                        <ul>
+                            <li>Sistema de batalha com estruturas condicionais (if/else)</li>
+                            <li>Loops para enfrentar múltiplos inimigos</li>
+                            <li>Sistema de inventário dinâmico</li>
+                            <li>Tomada de decisões estratégicas</li>
+                            <li>Combates épicos contra bosses algorítmicos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NÍVEL 3 - PLACEHOLDER -->
+        <div class="level-section" id="level3">
+            <div class="main-card fade-in">
+                <div class="coming-soon">
+                    <h1 class="coming-soon-title">🔒 Nível 3: O Castelo dos Arrays</h1>
+                    <p class="coming-soon-text">As masmorras mais profundas aguardam os mestres do código...</p>
+                    <p class="coming-soon-text">🏰 Prepare-se para a aventura mais desafiadora com arrays, funções e objetos!</p>
+                    
+                    <div class="preview-features">
+                        <h3>🎯 O que você dominará aqui:</h3>
+                        <ul>
+                            <li>Manipulação avançada de arrays multidimensionais</li>
+                            <li>Criação de funções mágicas personalizadas</li>
+                            <li>Sistema de objetos complexos para personagens</li>
+                            <li>Algoritmos de busca e ordenação</li>
+                            <li>Boss final: O Dragão dos Dados</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Otimização: Função otimizada para criar menos partículas
+        // SISTEMA DE NAVEGAÇÃO OTIMIZADO
+        function showLobby() {
+            document.querySelectorAll('.level-section, .lobby-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById('lobby').style.display = 'block';
+            document.querySelector('.back-button').style.display = 'none';
+            
+            // Recriar partículas otimizadas para o lobby
+            if (window.innerWidth > 768) {
+                createParticles();
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showLevel(levelNumber) {
+            // Só permitir acesso ao nível 1 por enquanto
+            if (levelNumber !== 1) {
+                return; // Bloqueia acesso aos níveis 2 e 3
+            }
+
+            document.querySelectorAll('.level-section, .lobby-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(`level${levelNumber}`).style.display = 'block';
+            document.querySelector('.back-button').style.display = 'block';
+            
+            // Recriar partículas para o nível
+            if (window.innerWidth > 768) {
+                createParticles();
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // SISTEMA DE PARTÍCULAS OTIMIZADO - REDUZIDO NO LOBBY
         function createParticles() {
             const container = document.getElementById('particles');
-            // Reduzido de 50 para 20 partículas
-            const particleCount = window.innerWidth > 768 ? 20 : 10;
+            const isLobby = document.getElementById('lobby').style.display !== 'none';
+            
+            // Muito menos partículas no lobby para melhor performance
+            const particleCount = isLobby ? 
+                (window.innerWidth > 768 ? 8 : 3) : 
+                (window.innerWidth > 768 ? 15 : 8);
+
+            // Limpar partículas existentes
+            container.innerHTML = '';
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 6) + 's';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 8) + 's';
                 container.appendChild(particle);
             }
         }
 
-        // Otimização: Usar Intersection Observer para animações
+        // INTERSECTION OBSERVER
         function setupIntersectionObserver() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -799,7 +1156,7 @@ console.log("Pode enfrentar o Guardião? true — a batalha final se aproxima, e
             });
         }
 
-        // Otimização: Throttle para scroll event
+        // THROTTLE FUNCTION
         function throttle(func, limit) {
             let inThrottle;
             return function() {
@@ -813,7 +1170,7 @@ console.log("Pode enfrentar o Guardião? true — a batalha final se aproxima, e
             }
         }
 
-        // Otimização: Parallax mais leve
+        // PARALLAX OTIMIZADO
         const handleScroll = throttle(() => {
             const scrolled = window.pageYOffset;
             const parallax = document.querySelector('.floating-particles');
@@ -822,25 +1179,27 @@ console.log("Pode enfrentar o Guardião? true — a batalha final se aproxima, e
             }
         }, 16);
 
-        // Inicialização otimizada
+        // INICIALIZAÇÃO
         function init() {
-            // Só criar partículas se não for mobile
             if (window.innerWidth > 768) {
                 createParticles();
                 window.addEventListener('scroll', handleScroll, { passive: true });
             }
             
             setupIntersectionObserver();
+            
+            // Mostrar lobby por padrão
+            showLobby();
         }
 
-        // Usar requestAnimationFrame para inicialização
+        // START
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', init);
         } else {
             requestAnimationFrame(init);
         }
 
-        // Otimização: Cleanup on page unload
+        // CLEANUP
         window.addEventListener('beforeunload', () => {
             window.removeEventListener('scroll', handleScroll);
         });
