@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia dos Códigos Arcanos - Desafio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #ffd700;
+            --secondary-orange: #ff6b35;
+            --accent-purple: #a855f7;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(15, 15, 35, 0.85);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --border-gradient: linear-gradient(135deg, #ffd700, #ff6b35, #a855f7);
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(10, 10, 10, 0.8), rgba(15, 15, 35, 0.9)),
+                url('https://wallpapercrafter.com/desktop/132977-Hytale-RPG-video-games-video-game-art.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #ffffff;
+            line-height: 1.7;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Otimização: Reduzir partículas e usar transform3d para GPU */
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            will-change: transform;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+            opacity: 0.4;
+            will-change: transform;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate3d(0, 0, 0) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                transform: translate3d(0, -80px, 0) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .main-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 24px;
+            padding: 50px;
+            margin: 40px 0;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Otimização: Shimmer menos frequente e usando transform */
+        .main-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 215, 0, 0.02),
+                    transparent);
+            transform: translateX(0) skewX(-15deg);
+            animation: shimmer 12s infinite;
+            will-change: transform;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-50%) skewX(-15deg);
+            }
+            100% {
+                transform: translateX(50%) skewX(-15deg);
+            }
+        }
+
+        .title {
+            font-family: 'Orbitron', monospace;
+            font-size: 4rem;
+            font-weight: 900;
+            text-align: center;
+            background: linear-gradient(135deg, #ffd700 0%, #ff6b35 50%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+        }
+
+        /* Otimização: Glow menos intenso e frequente */
+        .title {
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+            animation: glow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+            }
+            to {
+                filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.4));
+            }
+        }
+
+        .subtitle {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            text-align: center;
+            color: var(--secondary-orange);
+            margin-bottom: 40px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+
+        .section {
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 25px 0;
+            position: relative;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            will-change: transform;
+        }
+
+        .card:hover {
+            transform: translate3d(0, -5px, 0);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--border-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .section-title::before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #ffd700, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Otimização: Pulse menos frequente */
+        .section-title::before {
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translateY(-50%) scale(1);
+            }
+            50% {
+                transform: translateY(-50%) scale(1.05);
+            }
+        }
+
+        .step-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.6rem;
+            color: var(--accent-purple);
+            margin: 30px 0 20px 0;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, var(--primary-gold), var(--secondary-orange));
+            color: var(--dark-bg);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-weight: 900;
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Otimização: Remover rotação contínua */
+        .step-number:hover {
+            transform: rotate(10deg) scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        .content {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-align: justify;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+
+        .content-list {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            margin-left: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .content-list li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .content-list li::before {
+            content: '▶';
+            position: absolute;
+            left: -15px;
+            color: var(--secondary-orange);
+            font-size: 0.8rem;
+        }
+
+        .code-block {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(15, 15, 35, 0.9));
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 25px 0;
+            font-family: 'Orbitron', monospace;
+            color: #00ff88;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block::before {
+            content: 'CÓDIGO ARCANO';
+            position: absolute;
+            top: -12px;
+            left: 25px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--secondary-orange));
+            color: var(--dark-bg);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .special-card {
+            background: linear-gradient(135deg,
+                    rgba(255, 215, 0, 0.1) 0%,
+                    rgba(255, 107, 53, 0.1) 50%,
+                    rgba(168, 85, 247, 0.1) 100%);
+            border: 2px solid;
+            border-image: var(--border-gradient) 1;
+            border-radius: 20px;
+            padding: 35px;
+            margin: 30px 0;
+            position: relative;
+            backdrop-filter: blur(8px);
+        }
+
+        .special-card::before {
+            content: attr(data-title);
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-purple));
+            color: var(--dark-bg);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, var(--primary-gold), var(--secondary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .magic-text {
+            background: linear-gradient(135deg, var(--accent-purple), #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .important-note {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(239, 68, 68, 0.1));
+            border-left: 4px solid var(--secondary-orange);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 16px 16px 0;
+            backdrop-filter: blur(8px);
+        }
+
+        .hero-image-container {
+            margin: 40px 0;
+            position: relative;
+            width: 100%;
+            height: 600px;
+        }
+
+        .hero-image-card {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+
+        .hero-image-card:hover {
+            transform: translate3d(0, -8px, 0) scale(1.02);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 800px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+            will-change: transform;
+        }
+
+        .hero-image-card:hover .hero-image {
+            transform: scale(1.03);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg,
+                    rgba(0, 0, 0, 0.3) 0%,
+                    rgba(255, 215, 0, 0.1) 50%,
+                    rgba(168, 85, 247, 0.2) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .hero-image-card:hover .hero-overlay {
+            opacity: 1;
+        }
+
+        .hero-text {
+            text-align: center;
+            color: white;
+            z-index: 10;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+
+        .hero-image-card:hover .hero-text {
+            transform: translateY(0);
+        }
+
+        .hero-text h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffd700, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-text p {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+            font-style: italic;
+        }
+
+        .rune {
+            display: inline-block;
+            font-size: 1.5rem;
+            margin: 0 8px;
+        }
+
+        /* Otimização: Bounce menos frequente */
+        .rune {
+            animation: bounce 4s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            25% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary-gold), var(--secondary-orange));
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--secondary-orange), var(--accent-purple));
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+
+            .main-card {
+                padding: 25px;
+                margin: 20px 10px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+                padding-left: 50px;
+            }
+
+            .step-title {
+                font-size: 1.3rem;
+            }
+
+            .step-number {
+                width: 40px;
+                height: 40px;
+                margin-right: 15px;
+            }
+
+            .hero-image {
+                height: 250px;
+            }
+
+            .hero-text h3 {
+                font-size: 1.5rem;
+                letter-spacing: 1px;
+            }
+
+            .hero-text p {
+                font-size: 1.1rem;
+            }
+
+            /* Otimização mobile: reduzir efeitos */
+            .floating-particles {
+                display: none;
+            }
+
+            /* Otimização mobile: background-attachment fixed causa lag */
+            body {
+                background-attachment: scroll;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Otimização: Remover cursor personalizado que pode causar lag */
+        
+        /* Performance: Usar containment para otimizar repaint */
+        .card, .main-card, .special-card {
+            contain: layout style paint;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="floating-particles" id="particles"></div>
+
+    <div class="container">
+        <div class="main-card fade-in">
+            <h1 class="title">⚔️ Desafio</h1>
+            <p class="subtitle">A Jornada do(a) Herói(na) de Algorithmia</p>
+
+            <div class="hero-image-container fade-in">
+                <div class="hero-image-card">
+                    <img src="./img/rpg.png"
+                        alt="Capa da Atividade RPG" class="hero-image" loading="lazy">
+                    <div class="hero-overlay">
+                        <div class="hero-text">
+                            <h3>🎲 AVENTURA ÉPICA DE PROGRAMAÇÃO</h3>
+                            <p>Desperte o Mestre de Códigos que existe em você!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="special-card" data-title="🎯 OBJETIVO DA QUEST">
+                <div class="content">
+                    Nesta atividade, você colocará em prática todos os conceitos aprendidos até aqui, criando um
+                    personagem em um universo de fantasia medieval com elementos tecnológicos.
+                </div>
+                <div class="content">
+                    Você irá programar a ficha do seu herói ou heroína e gerar automaticamente sua <span
+                        class="highlight">lore</span> — uma narrativa descritiva e épica baseada nos dados que você
+                    criou.
+                </div>
+            </div>
+
+            <div class="special-card" data-title="🧠 CONTEÚDOS APLICADOS">
+                <ul class="content-list">
+                    <li>Declaração de <span class="highlight">variáveis</span></li>
+                    <li>Declaração de <span class="highlight">constantes</span></li>
+                    <li>Uso de <span class="highlight">operadores de atribuição</span></li>
+                    <li>Uso de <span class="highlight">operadores aritméticos</span></li>
+                    <li>Uso de <span class="highlight">operadores lógicos</span></li>
+                </ul>
+                <div class="important-note">
+                    <strong>📌 Importante:</strong> <em>Não utilize estruturas condicionais (<span
+                            class="highlight">if</span>) nesta atividade.</em>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">🧩 Etapas da Aventura</h2>
+
+                <div class="card fade-in">
+                    <div class="step-title">
+                        <span class="step-number">1</span>🔹 Criação das Variáveis Principais
+                    </div>
+                    <div class="content">
+                        Utilizando <span class="highlight">let</span>, declare e atribua valores coerentes às seguintes
+                        informações do personagem:
+                    </div>
+                    <div class="code-block">
+                        <pre>nome        // Nome do personagem
+classe      // Tipo de herói (guerreiro, maga, engenheira arcana, etc.)
+nivel       // Nível do herói (número entre 1 e 20, por exemplo)
+vida        // Pontos de vida
+ouro        // Quantidade de moedas
+xp          // Experiência acumulada</pre>
+                    </div>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="step-title">
+                        <span class="step-number">2</span>🔸 Definição de Constantes Mágicas
+                    </div>
+                    <div class="content">
+                        Utilize <span class="highlight">const</span> para representar os equipamentos mágicos do
+                        personagem. Esses valores <strong>não podem mudar</strong>:
+                    </div>
+                    <div class="code-block">
+                        <pre>NOME_ARMA       // Ex: "Espada Flamejante"
+DANO_BASE       // Ex: 40
+NOME_ARMADURA   // Ex: "Capa de Dados"
+DEFESA_BASE     // Ex: 20</pre>
+                    </div>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="step-title">
+                        <span class="step-number">3</span>⚙️ Aplicação de Operadores de Atribuição
+                    </div>
+                    <div class="content">
+                        Atualize os valores das variáveis do personagem conforme os eventos abaixo, utilizando
+                        <strong>operadores de atribuição diferentes</strong>:
+                    </div>
+                    <ul class="content-list">
+                        <li>O personagem treinou e ganhou <strong>150 pontos de experiência</strong></li>
+                        <li>Comprou uma poção por <strong>30 moedas de ouro</strong></li>
+                        <li>Usou a poção e <strong>recuperou 40 pontos de vida</strong></li>
+                        <li>A arma foi encantada, e seu <strong>dano foi dobrado</strong></li>
+                    </ul>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="step-title">
+                        <span class="step-number">4</span>➕ Cálculo de Atributos Finais
+                    </div>
+                    <div class="content">
+                        Com base nas informações anteriores, crie duas variáveis com os seguintes cálculos:
+                    </div>
+                    <div class="code-block">
+                        <pre>ataqueTotal = nivel + DANO_BASE
+defesaTotal = DEFESA_BASE + (nivel / 2)</pre>
+                    </div>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="step-title">
+                        <span class="step-number">5</span>🔐 Avaliação de Prontidão com Operadores Lógicos
+                    </div>
+                    <div class="content">
+                        Crie variáveis booleanas para verificar as seguintes condições:
+                    </div>
+                    <div class="code-block">
+                        <pre>vidaSuficiente → vida > 70
+ataqueForte → ataqueTotal > 60
+nivelAvancado → nivel >= 10
+podeEnfrentarGuardiao → vidaSuficiente && (ataqueForte || nivelAvancado)</pre>
+                    </div>
+                    <div class="content">
+                        Essas variáveis devem ser exibidas no console para mostrar <span class="highlight">true</span>
+                        ou <span class="highlight">false</span>.
+                    </div>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="step-title">
+                        <span class="step-number">6</span>📜 Geração da Lore do Personagem
+                    </div>
+                    <div class="content">
+                        Por fim, use <span class="highlight">console.log()</span> para escrever uma <strong>narrativa de
+                            aproximadamente 10 linhas</strong>, no estilo <strong>RPG medieval com elementos
+                            tecnológicos</strong>. Ela deve usar os dados criados dinamicamente para contar a história
+                        do personagem.
+                    </div>
+
+                    <div class="special-card" data-title="💡 EXEMPLO DE LORE">
+                        <div class="code-block">
+                            <pre>console.log("🧾 LORE DO HERÓI: Kael");
+console.log("");
+console.log("Kael, o Tecno-Mago errante, percorre as ruínas criptografadas do Reino de Algorithmia.");
+console.log("Portando seu Catalisador de Nuvem, canaliza tempestades de código contra inimigos do sistema.");
+console.log("Com nível 12 e um ataque total de 92, é temido até mesmo pelos bugs ancestrais.");
+console.log("Suas defesas, impulsionadas pela Capa de Dados, atingem 26 pontos de resistência.");
+console.log("Após intensos treinamentos, acumula 540 de XP e carrega 90 moedas, pronto para negociações nas tavernas de byte.");
+console.log("Restaurado com 85 pontos de vida, Kael é considerado uma das maiores promessas da Geração Binária.");
+console.log("Vida suficiente? true | Ataque forte? true | Nível avançado? true");
+console.log("Pode enfrentar o Guardião? true — a batalha final se aproxima, e o destino está sendo compilado.");</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="special-card" data-title="✅ CRITÉRIOS DE ENTREGA">
+                <ul class="content-list">
+                    <li>O código deve conter todas as etapas (1 a 6).</li>
+                    <li>A lore deve ser gerada dinamicamente a partir dos dados criados.</li>
+                    <li>Capriche na criatividade e na apresentação no console.</li>
+                    <li><strong>Evite copiar a lore do exemplo</strong> — crie a sua própria história!</li>
+                    <li> A entrega deve ser feita pelo classroom.</li>
+                    <li>Você deve enviar o código como arquivo .js </li>
+                    <li>E, você deve enviar o código no formato de imagem(print) ou PDF </li>
+                    
+                </ul>
+                <p style="margin-top: 25px; text-align: center; font-size: 1.3rem;">
+                    <span class="magic-text">Que sua jornada pela programação seja épica e cheia de aprendizado!</span>
+                    <span class="rune">🌟</span><span class="rune">⚡</span><span class="rune">🔮</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Otimização: Função otimizada para criar menos partículas
+        function createParticles() {
+            const container = document.getElementById('particles');
+            // Reduzido de 50 para 20 partículas
+            const particleCount = window.innerWidth > 768 ? 20 : 10;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 6) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Otimização: Usar Intersection Observer para animações
+        function setupIntersectionObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '50px'
+            });
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Otimização: Throttle para scroll event
+        function throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            }
+        }
+
+        // Otimização: Parallax mais leve
+        const handleScroll = throttle(() => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.floating-particles');
+            if (parallax && scrolled < window.innerHeight * 2) {
+                parallax.style.transform = `translate3d(0, ${scrolled * 0.1}px, 0)`;
+            }
+        }, 16);
+
+        // Inicialização otimizada
+        function init() {
+            // Só criar partículas se não for mobile
+            if (window.innerWidth > 768) {
+                createParticles();
+                window.addEventListener('scroll', handleScroll, { passive: true });
+            }
+            
+            setupIntersectionObserver();
+        }
+
+        // Usar requestAnimationFrame para inicialização
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            requestAnimationFrame(init);
+        }
+
+        // Otimização: Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            window.removeEventListener('scroll', handleScroll);
+        });
+    </script>
+</body>
+
+</html>
