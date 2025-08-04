@@ -1,7 +1,7 @@
 const NOME_ARMA = "Espada do Trovão";
 const DANO_BASE = 100;
 const RAREZA = "Lendária";
-const ELEMENTO = "Raio";
+const ELEMENTO = "Raio"
 
 console.log(`⚔️ Arma: ${NOME_ARMA}`);
 console.log(`💥 Dano Base: ${DANO_BASE}`);
