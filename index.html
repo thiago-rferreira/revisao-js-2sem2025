@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academia dos Códigos Arcanos - Aventura Completa</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -32,7 +32,7 @@
 
         body {
             font-family: 'Exo 2', sans-serif;
-            background: 
+            background:
                 linear-gradient(135deg, rgba(10, 10, 10, 0.70), rgba(15, 15, 35, 0.9)),
                 url('https://wallpapercrafter.com/desktop/132977-Hytale-RPG-video-games-video-game-art.jpg');
             background-size: cover;
@@ -65,9 +65,20 @@
         }
 
         @keyframes float {
-            from { transform: translateY(100vh); opacity: 0; }
-            10%, 90% { opacity: 0.3; }
-            to { transform: translateY(-100px); opacity: 0; }
+            from {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+
+            10%,
+            90% {
+                opacity: 0.3;
+            }
+
+            to {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
         }
 
         .container {
@@ -642,7 +653,8 @@
                         <h3 class="level-title">🗡️ A Jornada do(a) Herói(na)</h3>
                         <div class="level-difficulty difficulty-beginner">Iniciante</div>
                         <p class="level-description">
-                            Desperte o Mestre de Códigos que existe em você! Crie seu personagem épico usando variáveis, constantes e operadores básicos.
+                            Desperte o Mestre de Códigos que existe em você! Crie seu personagem épico usando variáveis,
+                            constantes e operadores básicos.
                         </p>
                         <div class="level-status">🎮 DISPONÍVEL</div>
                     </div>
@@ -653,7 +665,8 @@
                         <h3 class="level-title">⚔️ A Batalha dos Algoritmos</h3>
                         <div class="level-difficulty difficulty-intermediate">Intermediário</div>
                         <p class="level-description">
-                            Enfrente criaturas místicas usando estruturas condicionais e git. A verdadeira aventura começa aqui!
+                            Enfrente criaturas místicas usando estruturas condicionais e git. A verdadeira aventura
+                            começa aqui!
                         </p>
                         <div class="level-status">🔒</div>
                     </div>
@@ -664,7 +677,8 @@
                         <h3 class="level-title">🏰 O Castelo dos Arrays</h3>
                         <div class="level-difficulty difficulty-advanced">Avançado</div>
                         <p class="level-description">
-                            Explore as masmorras mais profundas com arrays, loops e muito mais. Apenas os mestres chegam até aqui!
+                            Explore as masmorras mais profundas com arrays, loops e muito mais. Apenas os mestres chegam
+                            até aqui!
                         </p>
                         <div class="level-status">🔒</div>
                     </div>
@@ -672,15 +686,18 @@
 
                 <div class="special-card" data-title="🎯 SISTEMA DE PROGRESSÃO ÉPICA">
                     <div class="content">
-                        Complete cada nível em ordem para desbloquear o próximo! Cada aventura traz novos desafios e conceitos de programação mais avançados, testando suas habilidades de Mestre dos Códigos.
+                        Complete cada nível em ordem para desbloquear o próximo! Cada aventura traz novos desafios e
+                        conceitos de programação mais avançados, testando suas habilidades de Mestre dos Códigos.
                     </div>
                     <div class="content">
-                        <span class="highlight">✨ Dica de Mestre:</span> Comece pelo <strong>Nível 1</strong> para dominar os fundamentos arcanos antes de partir para batalhas algorítmicas mais épicas! Cada vitória desbloqueará segredos mais profundos da programação.
+                        <span class="highlight">✨ Dica de Mestre:</span> Comece pelo <strong>Nível 1</strong> para
+                        dominar os fundamentos arcanos antes de partir para batalhas algorítmicas mais épicas! Cada
+                        vitória desbloqueará segredos mais profundos da programação.
                     </div>
                     <div class="content">
-                        <span class="magic-text">🎖️ Sistema de Conquistas:</span> 
-                        • <strong>Nível 1</strong> → Fundamentos do Código 
-                        • <strong>Nível 2</strong> → Mestre das Condicionais 
+                        <span class="magic-text">🎖️ Sistema de Conquistas:</span>
+                        • <strong>Nível 1</strong> → Fundamentos do Código
+                        • <strong>Nível 2</strong> → Mestre das Condicionais
                         • <strong>Nível 3</strong> → Senhor dos Arrays
                     </div>
                 </div>
@@ -739,7 +756,8 @@
                             <span class="step-number">1</span>🔹 Criação das Variáveis Principais
                         </div>
                         <div class="content">
-                            Utilizando <span class="highlight">let</span>, declare e atribua valores coerentes às seguintes
+                            Utilizando <span class="highlight">let</span>, declare e atribua valores coerentes às
+                            seguintes
                             informações do personagem:
                         </div>
                         <div class="code-block">
@@ -811,7 +829,8 @@ nivelAvancado → nivel >= 10
 podeEnfrentarGuardiao → vidaSuficiente && (ataqueForte || nivelAvancado)</pre>
                         </div>
                         <div class="content">
-                            Essas variáveis devem ser exibidas no console para mostrar <span class="highlight">true</span>
+                            Essas variáveis devem ser exibidas no console para mostrar <span
+                                class="highlight">true</span>
                             ou <span class="highlight">false</span>.
                         </div>
                     </div>
@@ -821,9 +840,11 @@ podeEnfrentarGuardiao → vidaSuficiente && (ataqueForte || nivelAvancado)</pre>
                             <span class="step-number">6</span>📜 Geração da Lore do Personagem
                         </div>
                         <div class="content">
-                            Por fim, use <span class="highlight">console.log()</span> para escrever uma <strong>narrativa de
+                            Por fim, use <span class="highlight">console.log()</span> para escrever uma
+                            <strong>narrativa de
                                 aproximadamente 10 linhas</strong>, no estilo <strong>RPG medieval com elementos
-                                tecnológicos</strong>. Ela deve usar os dados criados dinamicamente para contar a história
+                                tecnológicos</strong>. Ela deve usar os dados criados dinamicamente para contar a
+                            história
                             do personagem.
                         </div>
 
@@ -855,7 +876,8 @@ console.log("Pode enfrentar o Guardião? true — a batalha final se aproxima, e
                         <li>E, você deve enviar o código no formato de imagem(print) ou PDF</li>
                     </ul>
                     <p style="margin-top: 25px; text-align: center; font-size: 1.3rem;">
-                        <span class="magic-text">Que sua jornada pela programação seja épica e cheia de aprendizado!</span>
+                        <span class="magic-text">Que sua jornada pela programação seja épica e cheia de
+                            aprendizado!</span>
                         <span class="rune">🌟</span><span class="rune">⚡</span><span class="rune">🔮</span>
                     </p>
                 </div>
@@ -869,7 +891,8 @@ console.log("Pode enfrentar o Guardião? true — a batalha final se aproxima, e
 
                 <div class="hero-image-container fade-in">
                     <div class="hero-image-card">
-                        <img src="./img/rpg.png" alt="Nível 2 - Batalha dos Algoritmos" class="hero-image" loading="lazy">
+                        <img src="./img/rpg.png" alt="Nível 2 - Batalha dos Algoritmos" class="hero-image"
+                            loading="lazy">
                         <div class="hero-overlay">
                             <div class="hero-text">
                                 <h3>⚔️ BATALHAS ÉPICAS DE CÓDIGO</h3>
@@ -881,13 +904,17 @@ console.log("Pode enfrentar o Guardião? true — a batalha final se aproxima, e
 
                 <div class="special-card" data-title="🔗 CONTINUANDO SUA JORNADA ÉPICA">
                     <div class="content">
-                        Após dominar os fundamentos no <strong>Nível 1</strong>, onde você criou seu personagem e estabeleceu as bases do seu mundo, 
-                        agora é hora de dar vida à sua história através das <span class="highlight">decisões estratégicas</span>!
+                        Após dominar os fundamentos no <strong>Nível 1</strong>, onde você criou seu personagem e
+                        estabeleceu as bases do seu mundo,
+                        agora é hora de dar vida à sua história através das <span class="highlight">decisões
+                            estratégicas</span>!
                     </div>
                     <div class="content">
-                        <strong>🎯 Sua missão:</strong> Pegue o personagem e mundo que você criou no Nível 1 e desenvolva 
-                        a continuação da história, mas agora com <span class="magic-text">poder de decisão algorítmica</span>!
-                        Você dominará as artes do <span class="magic-text">Git Arcano</span> — o sistema de 
+                        <strong>🎯 Sua missão:</strong> Pegue o personagem e mundo que você criou no Nível 1 e
+                        desenvolva
+                        a continuação da história, mas agora com <span class="magic-text">poder de decisão
+                            algorítmica</span>!
+                        Você dominará as artes do <span class="magic-text">Git Arcano</span> — o sistema de
                         versionamento que permite aos mestres programadores preservar seus códigos sagrados.
                     </div>
                 </div>
@@ -909,19 +936,24 @@ console.log("Pode enfrentar o Guardião? true — a batalha final se aproxima, e
                         <strong>🎭 ELEMENTOS NARRATIVOS OBRIGATÓRIOS:</strong>
                     </div>
                     <div class="content">
-                        <strong>1. Continuidade do Nível 1:</strong> Use o mesmo personagem, cenário e contexto que você criou anteriormente.
+                        <strong>1. Continuidade do Nível 1:</strong> Use o mesmo personagem, cenário e contexto que você
+                        criou anteriormente.
                     </div>
                     <div class="content">
-                        <strong>2. Situações de Conflito:</strong> Crie pelo menos 3 momentos onde seu personagem precisa tomar decisões importantes.
+                        <strong>2. Situações de Conflito:</strong> Crie pelo menos 3 momentos onde seu personagem
+                        precisa tomar decisões importantes.
                     </div>
                     <div class="content">
-                        <strong>3. Consequências Dinâmicas:</strong> Cada decisão deve gerar resultados diferentes na história.
+                        <strong>3. Consequências Dinâmicas:</strong> Cada decisão deve gerar resultados diferentes na
+                        história.
                     </div>
                     <div class="content">
-                        <strong>4. Evolução do Personagem:</strong> Mostre como as escolhas afetam atributos, habilidades ou situação do protagonista.
+                        <strong>4. Evolução do Personagem:</strong> Mostre como as escolhas afetam atributos,
+                        habilidades ou situação do protagonista.
                     </div>
                     <div class="content">
-                        <strong>5. Narrativa Interativa:</strong> A história deve "reagir" aos valores das variáveis e condições.
+                        <strong>5. Narrativa Interativa:</strong> A história deve "reagir" aos valores das variáveis e
+                        condições.
                     </div>
                 </div>
 
@@ -933,7 +965,7 @@ console.log("Pode enfrentar o Guardião? true — a batalha final se aproxima, e
                             <span class="step-number">1</span>🔗 Resgate do Nível 1
                         </div>
                         <div class="content">
-                            Primeiro, recupere e adapte as variáveis do seu personagem criado no Nível 1. 
+                            Primeiro, recupere e adapte as variáveis do seu personagem criado no Nível 1.
                             Mantenha a essência, mas adicione novos atributos necessários para as batalhas:
                         </div>
                         <div class="code-block">
@@ -973,19 +1005,25 @@ let missaoAtual = "SUA_MISSAO_DO_NIVEL_1";</pre>
                             <strong>📚 CAPÍTULOS OBRIGATÓRIOS DA SUA HISTÓRIA:</strong>
                         </div>
                         <div class="content">
-                            <strong>🌅 Prólogo:</strong> Recapitule brevemente o que aconteceu no Nível 1 e apresente a nova situação/conflito.
+                            <strong>🌅 Prólogo:</strong> Recapitule brevemente o que aconteceu no Nível 1 e apresente a
+                            nova situação/conflito.
                         </div>
                         <div class="content">
-                            <strong>⚔️ Capítulo 1 - Primeira Decisão:</strong> Use <span class="highlight">condicionais simples (if)</span> para reagir a uma situação de perigo ou oportunidade.
+                            <strong>⚔️ Capítulo 1 - Primeira Decisão:</strong> Use <span class="highlight">condicionais
+                                simples (if)</span> para reagir a uma situação de perigo ou oportunidade.
                         </div>
                         <div class="content">
-                            <strong>🛡️ Capítulo 2 - Escolha Estratégica:</strong> Use <span class="highlight">condicionais compostas (if/else)</span> para criar um momento de escolha binária decisiva.
+                            <strong>🛡️ Capítulo 2 - Escolha Estratégica:</strong> Use <span
+                                class="highlight">condicionais compostas (if/else)</span> para criar um momento de
+                            escolha binária decisiva.
                         </div>
                         <div class="content">
-                            <strong>🎭 Capítulo 3 - Batalha Épica:</strong> Use <span class="highlight">condicionais encadeadas (if/else if/else)</span> para um sistema de combate complexo.
+                            <strong>🎭 Capítulo 3 - Batalha Épica:</strong> Use <span class="highlight">condicionais
+                                encadeadas (if/else if/else)</span> para um sistema de combate complexo.
                         </div>
                         <div class="content">
-                            <strong>🏆 Epílogo:</strong> Mostre as consequências das decisões e prepare o terreno para o próximo nível.
+                            <strong>🏆 Epílogo:</strong> Mostre as consequências das decisões e prepare o terreno para o
+                            próximo nível.
                         </div>
                     </div>
 
@@ -994,11 +1032,13 @@ let missaoAtual = "SUA_MISSAO_DO_NIVEL_1";</pre>
                             <span class="step-number">3</span>⚔️ Condicionais Simples - A Primeira Decisão
                         </div>
                         <div class="content">
-                            <strong>3.4.1. Condicionais Simples:</strong> Use a estrutura <span class="highlight">if</span> 
+                            <strong>3.4.1. Condicionais Simples:</strong> Use a estrutura <span
+                                class="highlight">if</span>
                             para tomar uma única decisão. Se a condição for verdadeira, execute uma ação específica.
                         </div>
                         <div class="content">
-                            <strong>Na sua história:</strong> Crie verificações únicas que desencadeiam eventos especiais na narrativa:
+                            <strong>Na sua história:</strong> Crie verificações únicas que desencadeiam eventos
+                            especiais na narrativa:
                         </div>
                         <div class="code-block">
                             <pre>// CAPÍTULO 1: Condicionais Simples na narrativa
@@ -1027,7 +1067,7 @@ if (classe === "Mago") {
                             <span class="step-number">4</span>🛡️ Condicionais Compostas - Escolhas Estratégicas
                         </div>
                         <div class="content">
-                            <strong>3.4.2. Condicionais Compostas:</strong> Use <span class="highlight">if/else</span> 
+                            <strong>3.4.2. Condicionais Compostas:</strong> Use <span class="highlight">if/else</span>
                             para criar duas possibilidades mutuamente exclusivas na sua narrativa.
                         </div>
                         <div class="content">
@@ -1065,14 +1105,16 @@ if (experiencia >= 100) {
 
                     <div class="card fade-in">
                         <div class="step-title">
-                            <span class="step-number">5</span>🎭 Condicionais Encadeadas - Táticas Avançadas  
+                            <span class="step-number">5</span>🎭 Condicionais Encadeadas - Táticas Avançadas
                         </div>
                         <div class="content">
-                            <strong>3.4.3. Condicionais Encadeadas:</strong> Use <span class="highlight">if/else if/else</span> 
+                            <strong>3.4.3. Condicionais Encadeadas:</strong> Use <span class="highlight">if/else
+                                if/else</span>
                             para criar múltiplas possibilidades complexas na sua narrativa.
                         </div>
                         <div class="content">
-                            <strong>Na sua história:</strong> Implemente sistemas complexos com múltiplas possibilidades:
+                            <strong>Na sua história:</strong> Implemente sistemas complexos com múltiplas
+                            possibilidades:
                         </div>
                         <div class="code-block">
                             <pre>// CAPÍTULO 3: A Batalha Decisiva
@@ -1138,10 +1180,10 @@ console.log("🏁 FIM DO CAPÍTULO - Aguarde o próximo nível da aventura!");</
                             <span class="step-number">7</span>📜 Git Arcano - Versionamento de Códigos Sagrados
                         </div>
                         <div class="content">
-                            Todo mestre programador precisa dominar as artes do <span class="magic-text">Git</span> - 
+                            Todo mestre programador precisa dominar as artes do <span class="magic-text">Git</span> -
                             o sistema ancestral que preserva e versiona códigos através do tempo e espaço!
                         </div>
-                        
+
                         <div class="special-card" data-title="🧙‍♂️ COMANDOS BÁSICOS DO GIT ARCANO">
                             <div class="code-block">
                                 <pre># 🎯 Inicializar um repositório mágico
@@ -1173,8 +1215,9 @@ git pull origin main
                         </div>
 
                         <div class="content">
-                            <strong>🎯 Sua missão Git:</strong> Crie um repositório no GitHub chamado 
-                            <span class="highlight">"batalha-dos-algoritmos"</span> e faça pelo menos <strong>4 commits</strong> 
+                            <strong>🎯 Sua missão Git:</strong> Crie um repositório no GitHub chamado
+                            <span class="highlight">"batalha-dos-algoritmos"</span> e faça pelo menos <strong>4
+                                commits</strong>
                             (um para cada capítulo da sua história)!
                         </div>
                     </div>
@@ -1187,22 +1230,28 @@ git pull origin main
                             <strong>Como usar cada conceito técnico na sua história:</strong>
                         </div>
                         <div class="content">
-                            🔀 <strong>Condicionais Simples (if):</strong> Verificações que desencadeiam eventos especiais na narrativa.
+                            🔀 <strong>Condicionais Simples (if):</strong> Verificações que desencadeiam eventos
+                            especiais na narrativa.
                         </div>
                         <div class="content">
-                            ⚖️ <strong>Condicionais Compostas (if/else):</strong> Momentos de escolha binária com caminhos distintos.
+                            ⚖️ <strong>Condicionais Compostas (if/else):</strong> Momentos de escolha binária com
+                            caminhos distintos.
                         </div>
                         <div class="content">
-                            🎯 <strong>Condicionais Encadeadas (if/else if/else):</strong> Sistemas complexos de decisão com múltiplas possibilidades.
+                            🎯 <strong>Condicionais Encadeadas (if/else if/else):</strong> Sistemas complexos de decisão
+                            com múltiplas possibilidades.
                         </div>
                         <div class="content">
-                            📊 <strong>Operadores Avançados (>=, <=, ==, !=):</strong> Lógicas sofisticadas para verificar estados do personagem.
+                            📊 <strong>Operadores Avançados (>=, <=,==, !=):</strong> Lógicas sofisticadas para
+                                    verificar estados do personagem.
                         </div>
                         <div class="content">
-                            🧠 <strong>Lógica de Decisão:</strong> Sistemas inteligentes que analisam múltiplas variáveis para determinar ações.
+                            🧠 <strong>Lógica de Decisão:</strong> Sistemas inteligentes que analisam múltiplas
+                            variáveis para determinar ações.
                         </div>
                         <div class="content">
-                            📜 <strong>Git Versionamento:</strong> Documente cada capítulo/versão da sua narrativa com commits significativos.
+                            📜 <strong>Git Versionamento:</strong> Documente cada capítulo/versão da sua narrativa com
+                            commits significativos.
                         </div>
                     </div>
                 </div>
@@ -1212,17 +1261,21 @@ git pull origin main
                         <li><strong>Continuidade:</strong> Clara conexão com personagem/mundo do Nível 1</li>
                         <li><strong>Condicionais Simples:</strong> Pelo menos 3 verificações usando apenas if</li>
                         <li><strong>Condicionais Compostas:</strong> Pelo menos 2 escolhas binárias com if/else</li>
-                        <li><strong>Condicionais Encadeadas:</strong> Pelo menos 1 sistema complexo com if/else if/else</li>
+                        <li><strong>Condicionais Encadeadas:</strong> Pelo menos 1 sistema complexo com if/else if/else
+                        </li>
                         <li><strong>Git Versionamento:</strong> Repositório com pelo menos 4 commits significativos</li>
-                        <li><strong>Narrativa Dinâmica:</strong> História que reage às variáveis e condições (30-40 linhas)</li>
-                        <li><strong>Operadores Avançados:</strong> Use >=, <=, ==, != adequadamente na lógica</li>
+                        <li><strong>Narrativa Dinâmica:</strong> História que reage às variáveis e condições (30-40
+                            linhas)</li>
+                        <li><strong>Operadores Avançados:</strong> Use >=, <=,==, !=adequadamente na lógica</li>
                         <li><strong>Documentação:</strong> Comentários explicando a lógica das decisões</li>
                         <li><strong>Entrega:</strong> Link do GitHub + arquivo .js + prints/PDF funcionando</li>
                     </ul>
-                    
+
                     <div class="important-note">
-                        <strong>🎯 DICA ESPECIAL:</strong> <span class="magic-text">Sua história deve ter aproximadamente 30-40 linhas de narrativa, 
-                        intercaladas com a lógica condicional!</span> Cada commit no Git deve representar um capítulo ou desenvolvimento importante da história.
+                        <strong>🎯 DICA ESPECIAL:</strong> <span class="magic-text">Sua história deve ter
+                            aproximadamente 30-40 linhas de narrativa,
+                            intercaladas com a lógica condicional!</span> Cada commit no Git deve representar um
+                        capítulo ou desenvolvimento importante da história.
                         Use comentários no código para explicar sua lógica de batalha!
                     </div>
 
@@ -1235,89 +1288,99 @@ git pull origin main
         </div>
 
         <!-- NÍVEL 3 - ESTRUTURA BÁSICA -->
-     <!-- NÍVEL 3 - COMPLETO -->
-  <!-- NÍVEL 3 - COMPLETO -->
-  <div class="level-section" id="level3">
-    <div class="main-card fade-in">
-        <h1 class="title">🏰 Nível 3: O Castelo dos Arrays</h1>
-        <p class="subtitle">Masmorras de Loops e Coleções Arcanas</p>
+        <!-- NÍVEL 3 - COMPLETO -->
+        <!-- NÍVEL 3 - COMPLETO -->
+        <div class="level-section" id="level3">
+            <div class="main-card fade-in">
+                <h1 class="title">🏰 Nível 3: O Castelo dos Arrays</h1>
+                <p class="subtitle">Masmorras de Loops e Coleções Arcanas</p>
 
-        <div class="hero-image-container fade-in">
-            <div class="hero-image-card">
-                <img src="./img/rpg.png" alt="Nível 3 - Castelo dos Arrays" class="hero-image" loading="lazy">
-                <div class="hero-overlay">
-                    <div class="hero-text">
-                        <h3>🏰 MASMORRAS ALGORÍTMICAS</h3>
-                        <p>Conquiste as estruturas de dados mais poderosas!</p>
+                <div class="hero-image-container fade-in">
+                    <div class="hero-image-card">
+                        <img src="./img/rpg.png" alt="Nível 3 - Castelo dos Arrays" class="hero-image" loading="lazy">
+                        <div class="hero-overlay">
+                            <div class="hero-text">
+                                <h3>🏰 MASMORRAS ALGORÍTMICAS</h3>
+                                <p>Conquiste as estruturas de dados mais poderosas!</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="special-card" data-title="🏆 A SAGA CONTINUA">
-            <div class="content">
-                Após dominar as <strong>variáveis arcanas (Nível 1)</strong> e vencer a <strong>Batalha dos Algoritmos (Nível 2)</strong>, 
-                nosso herói chegou às portas do lendário <span class="highlight">Castelo dos Arrays</span>!
-            </div>
-            <div class="content">
-                <strong>🎯 Sua missão final:</strong> Explore as masmorras mais profundas do castelo, onde coleções de dados 
-                e loops infinitos guardam os segredos mais poderosos da programação. Use o mesmo personagem dos níveis anteriores 
-                e adicione <span class="magic-text">pelo menos 10 novas linhas épicas</span> à sua saga!
-            </div>
-            <div class="content">
-                Dentro do castelo, você encontrará <span class="magic-text">inventários mágicos, exércitos de aliados, 
-                hordas de inimigos e tesouros organizados em coleções arcanas</span> - tudo controlado pelo poder dos <strong>Arrays e Loops</strong>!
-            </div>
-        </div>
-
-        <div class="special-card" data-title="🧠 CONTEÚDOS APLICADOS">
-            <ul class="content-list">
-                <li><span class="highlight">3.5. Arrays (Coleções de Dados)</span></li>
-                <li><span class="highlight">3.5.1. Declaração e Inicialização de Arrays</span></li>
-                <li><span class="highlight">3.5.2. Acesso e Modificação de Elementos</span></li>
-                <li><span class="highlight">3.5.3. Métodos de Array</span> (push, pop, length)</li>
-                <li><span class="highlight">3.6. Estruturas de Repetição</span></li>
-                <li><span class="highlight">3.6.1. Loop For Tradicional</span></li>
-                <li>Manipulação de listas e inventários</li>
-                <li>Algoritmos de busca em coleções</li>
-                <li>Iteração controlada com índices</li>
-            </ul>
-        </div>
-
-        <div class="special-card" data-title="📖 O QUE SUA HISTÓRIA ÉPICA DEVE CONTER">
-            <div class="content">
-                <strong>🎭 ELEMENTOS NARRATIVOS OBRIGATÓRIOS:</strong>
-            </div>
-            <div class="content">
-                <strong>1. Continuidade Épica:</strong> Continue a saga do seu personagem dos Níveis 1 e 2, mostrando sua evolução.
-            </div>
-            <div class="content">
-                <strong>2. Gerenciamento de Inventário:</strong> Crie e manipule arrays de itens, armas, poções, etc.
-            </div>
-            <div class="content">
-                <strong>3. Batalhas em Grupo:</strong> Use arrays para representar múltiplos inimigos ou aliados.
-            </div>
-            <div class="content">
-                <strong>4. Exploração Sistemática:</strong> Use loops para percorrer masmorras, salas ou desafios.
-            </div>
-            <div class="content">
-                <strong>5. Narrativa Expandida:</strong> Adicione pelo menos 10 novas linhas épicas à história contínua.
-            </div>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title">🧩 Etapas da Aventura</h2>
-
-            <div class="card fade-in">
-                <div class="step-title">
-                    <span class="step-number">1</span>🔗 Resgate da Saga Anterior
+                <div class="special-card" data-title="🏆 A SAGA CONTINUA">
+                    <div class="content">
+                        Após dominar as <strong>variáveis arcanas (Nível 1)</strong> e vencer a <strong>Batalha dos
+                            Algoritmos (Nível 2)</strong>,
+                        nosso herói chegou às portas do lendário <span class="highlight">Castelo dos Arrays</span>!
+                    </div>
+                    <div class="content">
+                        <strong>🎯 Sua missão final:</strong> Explore as masmorras mais profundas do castelo, onde
+                        coleções de dados
+                        e loops infinitos guardam os segredos mais poderosos da programação. Use o mesmo personagem dos
+                        níveis anteriores
+                        e adicione <span class="magic-text">pelo menos 10 novas linhas épicas</span> à sua saga!
+                    </div>
+                    <div class="content">
+                        Dentro do castelo, você encontrará <span class="magic-text">inventários mágicos, exércitos de
+                            aliados,
+                            hordas de inimigos e tesouros organizados em coleções arcanas</span> - tudo controlado pelo
+                        poder dos <strong>Arrays e Loops</strong>!
+                    </div>
                 </div>
-                <div class="content">
-                    Continue sua jornada épica! Traga seu personagem dos níveis anteriores e adicione novos 
-                    elementos para suportar as aventuras do castelo:
+
+                <div class="special-card" data-title="🧠 CONTEÚDOS APLICADOS">
+                    <ul class="content-list">
+                        <li><span class="highlight">3.5. Arrays (Coleções de Dados)</span></li>
+                        <li><span class="highlight">3.5.1. Declaração e Inicialização de Arrays</span></li>
+                        <li><span class="highlight">3.5.2. Acesso e Modificação de Elementos</span></li>
+                        <li><span class="highlight">3.5.3. Métodos de Array</span> (push, pop, length)</li>
+                        <li><span class="highlight">3.6. Estruturas de Repetição</span></li>
+                        <li><span class="highlight">3.6.1. Loop For Tradicional</span></li>
+                        <li>Manipulação de listas e inventários</li>
+                        <li>Algoritmos de busca em coleções</li>
+                        <li>Iteração controlada com índices</li>
+                    </ul>
                 </div>
-                <div class="code-block">
-                    <pre>// === CONTINUAÇÃO DA SAGA ÉPICA - NÍVEL 3 ===
+
+                <div class="special-card" data-title="📖 O QUE SUA HISTÓRIA ÉPICA DEVE CONTER">
+                    <div class="content">
+                        <strong>🎭 ELEMENTOS NARRATIVOS OBRIGATÓRIOS:</strong>
+                    </div>
+                    <div class="content">
+                        <strong>1. Continuidade Épica:</strong> Continue a saga do seu personagem dos Níveis 1 e 2,
+                        mostrando sua evolução.
+                    </div>
+                    <div class="content">
+                        <strong>2. Gerenciamento de Inventário:</strong> Crie e manipule arrays de itens, armas, poções,
+                        etc.
+                    </div>
+                    <div class="content">
+                        <strong>3. Batalhas em Grupo:</strong> Use arrays para representar múltiplos inimigos ou
+                        aliados.
+                    </div>
+                    <div class="content">
+                        <strong>4. Exploração Sistemática:</strong> Use loops para percorrer masmorras, salas ou
+                        desafios.
+                    </div>
+                    <div class="content">
+                        <strong>5. Narrativa Expandida:</strong> Adicione pelo menos 10 novas linhas épicas à história
+                        contínua.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">🧩 Etapas da Aventura</h2>
+
+                    <div class="card fade-in">
+                        <div class="step-title">
+                            <span class="step-number">1</span>🔗 Resgate da Saga Anterior
+                        </div>
+                        <div class="content">
+                            Continue sua jornada épica! Traga seu personagem dos níveis anteriores e adicione novos
+                            elementos para suportar as aventuras do castelo:
+                        </div>
+                        <div class="code-block">
+                            <pre>// === CONTINUAÇÃO DA SAGA ÉPICA - NÍVEL 3 ===
 // Mantenha seu personagem dos níveis anteriores e adicione:
 
 let nomePersonagem = "SEU_PERSONAGEM_DOS_NIVEIS_ANTERIORES";
@@ -1339,23 +1402,24 @@ let tesouroColetado = [];
 console.log("🏰 === " + nomePersonagem + " ADENTRA O CASTELO DOS ARRAYS ===");
 console.log("Após as vitórias dos níveis anteriores, nosso herói chegou ao castelo lendário...");
 console.log("Inventário inicial: " + inventario.length + " itens mágicos");</pre>
-                </div>
-            </div>
+                        </div>
+                    </div>
 
-            <div class="card fade-in">
-                <div class="step-title">
-                    <span class="step-number">2</span>📦 Arrays - As Coleções Arcanas
-                </div>
-                <div class="content">
-                    <strong>3.5. Arrays:</strong> Aprenda a criar e manipular coleções de dados. Arrays são como 
-                    <span class="magic-text">baús mágicos</span> que guardam múltiplos itens organizados!
-                </div>
-                <div class="content">
-                    <strong>Na sua história:</strong> Use arrays para representar inventários, grupos de personagens, 
-                    listas de locais e coleções de tesouros:
-                </div>
-                <div class="code-block">
-                    <pre>// === CAPÍTULO 1: DESCOBERTA DAS COLEÇÕES ARCANAS ===
+                    <div class="card fade-in">
+                        <div class="step-title">
+                            <span class="step-number">2</span>📦 Arrays - As Coleções Arcanas
+                        </div>
+                        <div class="content">
+                            <strong>3.5. Arrays:</strong> Aprenda a criar e manipular coleções de dados. Arrays são como
+                            <span class="magic-text">baús mágicos</span> que guardam múltiplos itens organizados!
+                        </div>
+                        <div class="content">
+                            <strong>Na sua história:</strong> Use arrays para representar inventários, grupos de
+                            personagens,
+                            listas de locais e coleções de tesouros:
+                        </div>
+                        <div class="code-block">
+                            <pre>// === CAPÍTULO 1: DESCOBERTA DAS COLEÇÕES ARCANAS ===
 console.log("");
 console.log("🗝️ CAPÍTULO 1: Os Baús Arcanos do Castelo");
 
@@ -1378,23 +1442,24 @@ console.log("💍 Novo item adicionado! Inventário: " + inventario);
 let itemRemovido = inventario.pop(); // Remove do final
 console.log("📤 Item removido: " + itemRemovido);
 console.log("🎒 Inventário atual: " + inventario);</pre>
-                </div>
-            </div>
+                        </div>
+                    </div>
 
-            <div class="card fade-in">
-                <div class="step-title">
-                    <span class="step-number">3</span>🔄 For Loop Tradicional - O Ritual da Repetição
-                </div>
-                <div class="content">
-                    <strong>3.6.1. Loop For Tradicional:</strong> A magia mais poderosa para repetir ações! 
-                    O for tradicional oferece controle total sobre contadores, condições e incrementos.
-                </div>
-                <div class="content">
-                    <strong>Na sua história:</strong> Use for tradicional para percorrer masmorras, gerenciar inventários, 
-                    executar batalhas e realizar cálculos complexos:
-                </div>
-                <div class="code-block">
-                    <pre>// === CAPÍTULO 2: O RITUAL DA EXPLORAÇÃO ===
+                    <div class="card fade-in">
+                        <div class="step-title">
+                            <span class="step-number">3</span>🔄 For Loop Tradicional - O Ritual da Repetição
+                        </div>
+                        <div class="content">
+                            <strong>3.6.1. Loop For Tradicional:</strong> A magia mais poderosa para repetir ações!
+                            O for tradicional oferece controle total sobre contadores, condições e incrementos.
+                        </div>
+                        <div class="content">
+                            <strong>Na sua história:</strong> Use for tradicional para percorrer masmorras, gerenciar
+                            inventários,
+                            executar batalhas e realizar cálculos complexos:
+                        </div>
+                        <div class="code-block">
+                            <pre>// === CAPÍTULO 2: O RITUAL DA EXPLORAÇÃO ===
 console.log("");
 console.log("⚔️ CAPÍTULO 2: Explorando as Masmorras Sistemáticas");
 
@@ -1418,22 +1483,24 @@ vidaAtual -= 10; // Pequeno dano temporal
 }
 
 console.log("📊 Exploração completa! XP: " + experiencia + " | Vida: " + vidaAtual);</pre>
-                </div>
-            </div>
+                        </div>
+                    </div>
 
-            <div class="card fade-in">
-                <div class="step-title">
-                    <span class="step-number">4</span>🤝 Gerenciamento de Aliados com For
-                </div>
-                <div class="content">
-                    <strong>For Avançado:</strong> Use o poder do for tradicional para gerenciar grupos complexos, 
-                    aplicando lógica específica baseada em posições e índices.
-                </div>
-                <div class="content">
-                    <strong>Na sua história:</strong> Recrute e organize aliados usando controle preciso de iteração:
-                </div>
-                <div class="code-block">
-                    <pre>// === CAPÍTULO 3: A UNIÃO DOS ALIADOS ===
+                    <div class="card fade-in">
+                        <div class="step-title">
+                            <span class="step-number">4</span>🤝 Gerenciamento de Aliados com For
+                        </div>
+                        <div class="content">
+                            <strong>For Avançado:</strong> Use o poder do for tradicional para gerenciar grupos
+                            complexos,
+                            aplicando lógica específica baseada em posições e índices.
+                        </div>
+                        <div class="content">
+                            <strong>Na sua história:</strong> Recrute e organize aliados usando controle preciso de
+                            iteração:
+                        </div>
+                        <div class="code-block">
+                            <pre>// === CAPÍTULO 3: A UNIÃO DOS ALIADOS ===
 console.log("");
 console.log("🤝 CAPÍTULO 3: Reunindo os Aliados Arcanos");
 
@@ -1458,19 +1525,20 @@ experiencia += 40;
 }
 
 console.log("🎖️ Equipe completa! Ouro: " + ouro + " | Vida máxima: " + vidaMaxima);</pre>
-                </div>
-            </div>
+                        </div>
+                    </div>
 
-            <div class="card fade-in">
-                <div class="step-title">
-                    <span class="step-number">5</span>⚔️ Batalha Final - Arrays e For Combinados
-                </div>
-                <div class="content">
-                    <strong>Integração Épica:</strong> Combine arrays e loops for tradicionais para criar um sistema de batalha 
-                    complexo e dinâmico contra os inimigos do castelo!
-                </div>
-                <div class="code-block">
-                    <pre>// === CAPÍTULO 4: A BATALHA FINAL DOS ARRAYS ===
+                    <div class="card fade-in">
+                        <div class="step-title">
+                            <span class="step-number">5</span>⚔️ Batalha Final - Arrays e For Combinados
+                        </div>
+                        <div class="content">
+                            <strong>Integração Épica:</strong> Combine arrays e loops for tradicionais para criar um
+                            sistema de batalha
+                            complexo e dinâmico contra os inimigos do castelo!
+                        </div>
+                        <div class="code-block">
+                            <pre>// === CAPÍTULO 4: A BATALHA FINAL DOS ARRAYS ===
 console.log("");
 console.log("🐉 CAPÍTULO 4: Confronto com as Criaturas do Castelo");
 
@@ -1513,19 +1581,20 @@ console.log("📊 Rodada " + (i + 1) + " - Dano: " + danoRecebido[i]);
 
 console.log("⚡ Dano total causado: " + danoTotal);
 console.log("🏆 Tesouros coletados: " + tesouroColetado.length + " itens épicos!");</pre>
-                </div>
-            </div>
+                        </div>
+                    </div>
 
-            <div class="card fade-in">
-                <div class="step-title">
-                    <span class="step-number">6</span>📜 Epílogo Épico - A Lenda Continua
-                </div>
-                <div class="content">
-                    Finalize sua saga épica com um epílogo que mostre os resultados das aventuras 
-                    e prepare o terreno para futuras jornadas. Adicione as <span class="highlight">10+ linhas narrativas</span> obrigatórias!
-                </div>
-                <div class="code-block">
-                    <pre>// === EPÍLOGO: O MESTRE DOS ARRAYS ===
+                    <div class="card fade-in">
+                        <div class="step-title">
+                            <span class="step-number">6</span>📜 Epílogo Épico - A Lenda Continua
+                        </div>
+                        <div class="content">
+                            Finalize sua saga épica com um epílogo que mostre os resultados das aventuras
+                            e prepare o terreno para futuras jornadas. Adicione as <span class="highlight">10+ linhas
+                                narrativas</span> obrigatórias!
+                        </div>
+                        <div class="code-block">
+                            <pre>// === EPÍLOGO: O MESTRE DOS ARRAYS ===
 console.log("");
 console.log("👑 === EPÍLOGO: " + nomePersonagem + " - CONQUISTADOR DO CASTELO ===");
 
@@ -1557,84 +1626,96 @@ console.log("⚡ ARQUI-MAGO DOS ALGORITMOS ETERNOS ⚡");
 
 console.log("");
 console.log("🎯 FIM DO NÍVEL 3 | AGUARDE FUTURAS AVENTURAS NA ACADEMIA DOS CÓDIGOS! 🎯");</pre>
-                </div>
-            </div>
+                        </div>
+                    </div>
 
-            <div class="card fade-in">
-                <div class="step-title">
-                    <span class="step-number">7</span>🔧 Desafios Extras - Para os Mestres Supremos
-                </div>
-                <div class="content">
-                    <strong>🎖️ Desafios Opcionais:</strong> Para quem quer ir além e demonstrar maestria total:
-                </div>
-                <div class="content">
-                    <strong>1. Sistema de Inventário Inteligente:</strong> Crie uma função que organize automaticamente 
-                    os itens por tipo ou raridade.
-                </div>
-                <div class="content">
-                    <strong>2. Relatório de Batalha:</strong> Use loops para calcular estatísticas detalhadas 
-                    (dano médio, item mais usado, ally MVP, etc.).
-                </div>
-                <div class="content">
-                    <strong>3. Exploração Aleatória:</strong> Crie um sistema que gere salas e inimigos aleatórios 
-                    usando arrays e Math.random().
-                </div>
-                <div class="code-block">
-                    <pre>// EXEMPLO DE DESAFIO EXTRA: Sistema de Raridade
+                    <div class="card fade-in">
+                        <div class="step-title">
+                            <span class="step-number">7</span>🔧 Desafios Extras - Para os Mestres Supremos
+                        </div>
+                        <div class="content">
+                            <strong>🎖️ Desafios Opcionais:</strong> Para quem quer ir além e demonstrar maestria total:
+                        </div>
+                        <div class="content">
+                            <strong>1. Sistema de Inventário Inteligente:</strong> Crie uma função que organize
+                            automaticamente
+                            os itens por tipo ou raridade.
+                        </div>
+                        <div class="content">
+                            <strong>2. Relatório de Batalha:</strong> Use loops para calcular estatísticas detalhadas
+                            (dano médio, item mais usado, ally MVP, etc.).
+                        </div>
+                        <div class="content">
+                            <strong>3. Exploração Aleatória:</strong> Crie um sistema que gere salas e inimigos
+                            aleatórios
+                            usando arrays e Math.random().
+                        </div>
+                        <div class="code-block">
+<pre>// EXEMPLO DE DESAFIO EXTRA: Sistema de Raridade
 let itensRaros = [];
 let itensComuns = [];
-
-// Classificando itens por raridade usando loops
-for (let item of inventario) {
+                        
+// Classificando itens por raridade usando loops clássicos
+for (let i = 0; i < inventario.length; i++) {
+        let item = inventario[i];
+                            
 if (item.includes("Suprema") || item.includes("Flamejante")) {
-itensRaros.push(item);
-} else {
-itensComuns.push(item);
+        itensRaros.push(item);
+    } else {
+        itensComuns.push(item);
+    }
 }
-}
-
+                        
 console.log("💎 Itens Raros: " + itensRaros);
-console.log("🔧 Itens Comuns: " + itensComuns);</pre>
+console.log("🔧 Itens Comuns: " + itensComuns);
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="special-card" data-title="✅ CRITÉRIOS DE ENTREGA ÉPICOS">
+                    <ul class="content-list">
+                        <li><strong>Continuidade Narrativa:</strong> Clara conexão com personagem/mundo dos Níveis 1 e 2
+                        </li>
+                        <li><strong>Arrays Fundamentais:</strong> Pelo menos 4 arrays diferentes (inventário, aliados,
+                            inimigos, tesouros)</li>
+                        <li><strong>Métodos de Array:</strong> Use push(), pop(), length e acesso por índice [i]</li>
+                        <li><strong>For Tradicional:</strong> Pelo menos 1 loop for tradicional com controle de índice
+                        </li>
+                        <li><strong>For...of Loop:</strong> Pelo menos 1 loop for...of para iteração simples</li>
+                        <li><strong>Narrativa Épica:</strong> Adicione pelo menos 10 novas linhas de história épica</li>
+                        <li><strong>Integração Técnica:</strong> Arrays e loops trabalhando juntos na lógica da história
+                        </li>
+                        <li><strong>Git Avançado:</strong> Repositório atualizado com pelo menos 3 novos commits</li>
+                        <li><strong>Documentação:</strong> Comentários explicando a lógica dos arrays e loops</li>
+                        <li><strong>Entrega:</strong> GitHub atualizado + arquivo .js + prints/PDF funcionando</li>
+                    </ul>
+
+                    <div class="important-note">
+                        <strong>🎯 DICA SUPREMA:</strong> <span class="magic-text">Sua história deve ter aproximadamente
+                            50-60 linhas,
+                            sendo pelo menos 10 linhas de pura narrativa épica conectando com os níveis
+                            anteriores!</span>
+                        Use arrays para representar elementos do mundo (inventários, grupos, listas) e loops para criar
+                        ações repetitivas
+                        (exploração, batalhas, cálculos). Seja criativo com a integração técnica-narrativa!
+                    </div>
+
+                    <p style="margin-top: 25px; text-align: center; font-size: 1.3rem;">
+                        <span class="magic-text">Que sua jornada pelos Arrays seja lendária e seus Loops eternos!</span>
+                        <span class="rune">🏰</span><span class="rune">⚔️</span><span class="rune">👑</span>
+                    </p>
                 </div>
             </div>
         </div>
-
-        <div class="special-card" data-title="✅ CRITÉRIOS DE ENTREGA ÉPICOS">
-            <ul class="content-list">
-                <li><strong>Continuidade Narrativa:</strong> Clara conexão com personagem/mundo dos Níveis 1 e 2</li>
-                <li><strong>Arrays Fundamentais:</strong> Pelo menos 4 arrays diferentes (inventário, aliados, inimigos, tesouros)</li>
-                <li><strong>Métodos de Array:</strong> Use push(), pop(), length e acesso por índice [i]</li>
-                <li><strong>For Tradicional:</strong> Pelo menos 1 loop for tradicional com controle de índice</li>
-                <li><strong>For...of Loop:</strong> Pelo menos 1 loop for...of para iteração simples</li>
-                <li><strong>Narrativa Épica:</strong> Adicione pelo menos 10 novas linhas de história épica</li>
-                <li><strong>Integração Técnica:</strong> Arrays e loops trabalhando juntos na lógica da história</li>
-                <li><strong>Git Avançado:</strong> Repositório atualizado com pelo menos 3 novos commits</li>
-                <li><strong>Documentação:</strong> Comentários explicando a lógica dos arrays e loops</li>
-                <li><strong>Entrega:</strong> GitHub atualizado + arquivo .js + prints/PDF funcionando</li>
-            </ul>
-            
-            <div class="important-note">
-                <strong>🎯 DICA SUPREMA:</strong> <span class="magic-text">Sua história deve ter aproximadamente 50-60 linhas, 
-                sendo pelo menos 10 linhas de pura narrativa épica conectando com os níveis anteriores!</span> 
-                Use arrays para representar elementos do mundo (inventários, grupos, listas) e loops para criar ações repetitivas 
-                (exploração, batalhas, cálculos). Seja criativo com a integração técnica-narrativa!
-            </div>
-
-            <p style="margin-top: 25px; text-align: center; font-size: 1.3rem;">
-                <span class="magic-text">Que sua jornada pelos Arrays seja lendária e seus Loops eternos!</span>
-                <span class="rune">🏰</span><span class="rune">⚔️</span><span class="rune">👑</span>
-            </p>
-        </div>
-    </div>
-</div>
     </div>
 
     <script>
         // SISTEMA ULTRA OTIMIZADO
         const LEVEL_ACCESS = {
-            level1: true,   
-            level2: true,   
-            level3: true   
+            level1: true,
+            level2: true,
+            level3: true
         };
 
         function unlockLevel(levelNumber) {
@@ -1660,11 +1741,11 @@ console.log("🔧 Itens Comuns: " + itensComuns);</pre>
                 const levelNumber = levelKey.replace('level', '');
                 const card = document.querySelector(`[data-level="${levelNumber}"]`);
                 const isUnlocked = LEVEL_ACCESS[levelKey];
-                
+
                 if (card) {
                     if (isUnlocked) {
                         card.classList.remove('locked');
-                        const statusElement = card.querySelector('.level-status, .locked-icon'); 
+                        const statusElement = card.querySelector('.level-status, .locked-icon');
                         if (statusElement) {
                             statusElement.className = 'level-status';
                             statusElement.innerHTML = levelNumber === '1' ? '🎮 DISPONÍVEL' : '🆕 DESBLOQUEADO';
@@ -1743,7 +1824,7 @@ console.log("🔧 Itens Comuns: " + itensComuns);</pre>
         }
 
         // START
-        document.readyState === 'loading' ? 
+        document.readyState === 'loading' ?
             document.addEventListener('DOMContentLoaded', init) : init();
     </script>
 </body>
